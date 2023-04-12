@@ -33,6 +33,9 @@ let fruta = "manzana";
         case "banana","piña":
             console.log(`La ${fruta} es amarilla`)
             break;
+        case "piña":
+            console.log(`La ${fruta} es amarilla`)
+            break;
     
         default:
             console.log(`La ${fruta} es de otro color`)
@@ -84,13 +87,26 @@ console.log("--------------------");
     1. Escribe un bucle for anidado que muestre en consola una tabla de multiplicar del 1 al 10
  */
 
-let edad = 17
+let edad = 18
 if (edad >= 18) {
-    for (let i = 0; i < 10; i++) {
-        console.log(i);
+    for (let i = 0 ; i <= 10; i++) {
+        let a =5
+        console.log(`Multiplicamos ${a} x `+ i + " = " + a*i);
         
     }
     
 }else{
     console.log(`Su edad es ${edad}, no cumple con los requisitos de mayoria de edad`);
+}
+
+//Otra forma, anidando 2 for con dos variables.
+
+
+for (let i = 0; i <=10 ; i++) {
+    for (let h = 0; h <= 10; h++) {
+        console.log(`Tabla del ${i} Multiplicamos ${h} x `+ i + " = " + h*i + '\n');
+        
+    }
+    console.log('\n')
+    
 }
