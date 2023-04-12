@@ -63,6 +63,10 @@ while (i<=10) {
 }
 console.log("--------------------");
 console.log("--------------------");
+/**
+ * 5. Uso de bucle do-while
+    1. Escribe un bucle do-while que muestre en consola los números del 1 al 10.
+ */
 
 h = 1
 do {
@@ -75,6 +79,11 @@ do {
 console.log("--------------------");
 console.log("--------------------");
 
+/**
+ * 6. Uso de bucle for anidado
+    1. Escribe un bucle for anidado que muestre en consola una tabla de multiplicar del 1 al 10
+ */
+
 let edad = 17
 if (edad >= 18) {
     for (let i = 0; i < 10; i++) {
@@ -83,5 +92,5 @@ if (edad >= 18) {
     }
     
 }else{
-    console.log(`Su edad es ${edad}, no cumple con los requisitos de mayoria de edad`)
+    console.log(`Su edad es ${edad}, no cumple con los requisitos de mayoria de edad`);
 }
