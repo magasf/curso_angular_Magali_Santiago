@@ -4,7 +4,7 @@
     un saludo personalizado, por ejemplo, "¡Hola, Juan!"
  */
 
- let nombre = "Juan"
+ 
 
  function saludar(nombre) {
 
@@ -12,7 +12,7 @@
 
 
  }
- saludar(nombre)
+ saludar("Juan")
 
 /**
  * 2. Crear una función con múltiples
@@ -57,10 +57,15 @@ console.log(multiplicar(3,6));
     devolver el resultado
  */
 
-    function operacion(params) {
+    function operacion(a,b, operador) {
+        return operador(a,b)
 
-        
     }
+    let resultadoSuma = operacion(5,3,sumar)
+    console.log(resultadoSuma)
+
+    let resultadoMultiplicar = operacion(5,3, multiplicar);
+    console.log(resultadoMultiplicar)
 
 /**
  * 6. Crear una función que devuelve otra
@@ -69,3 +74,12 @@ console.log(multiplicar(3,6));
     debe devolver otra función que acepte un número y devuelva el resultado de multiplicar ese
     número por el factor dado
  */
+function crearMultiplicador(factor) {
+    return function (numero) {
+        return factor * numero;
+        
+    }
+    
+}
+let duplicar = crearMultiplicador(2);
+console.log(duplicar(5));
