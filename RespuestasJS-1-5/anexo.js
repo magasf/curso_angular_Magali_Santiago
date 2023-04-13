@@ -5,6 +5,7 @@ class SmartPhone{
         this.modelo = modelo;
         this.color = color;
         this.memoria= memoria;
+
     }
 
 }
@@ -18,3 +19,5 @@ console.log(smartphone1)
 console.log(smartphone2)
 console.log(smartphone3)
 console.log(smartphone4)
+let smartphone6 = new SmartPhone()
+
