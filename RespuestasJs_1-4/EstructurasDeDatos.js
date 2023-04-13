@@ -52,6 +52,44 @@ console.log(calificaciones.map(sumar5));
 let calificacionesDefinitivas = calificaciones.map(sumar5);
 console.log(calificacionesDefinitivas);
 
+//Opcion 1 con for of
+let calificacionesAltas = [];
+ for (const calificacion of calificaciones) {
+   if (calificacion >= 90) 
+      calificacionesAltas.push(calificacion)
+   
+ }
+ console.log(calificacionesAltas)
+ console.log("Segunda opcion para resolver") 
+
+ //Opcion 2: con filter y funcion flecha
+ const CalificacionesAprobadas = calificaciones.filter(function(calificacion){
+   return calificacion >= 90;
+ });
+ console.log(CalificacionesAprobadas)
+console.log("Opcion 3 para resolver")
+
+ //Opcion 3:
+ let calificacionesAltas2 = calificaciones.filter(calificacion => calificacion >=90);
+console.log(calificacionesAltas2);
+
+//4. 
+
+//Opcion 1: sumar todo con un for y dividir la suma para calcular la media
+let sumatorio = 0
+for (const calificacion of calificaciones) {
+   sumatorio = sumatorio + calificacion;  
+}
+console.log(`La suma de todas las calificaciones es ${sumatorio} `)
+
+let calificacionMedia = sumatorio/ calificaciones.length;
+console.log(`El promedio de las calificaciones es ${calificacionMedia}`); 
+
+//opcion 2
+let CalcularSumatorio = (sumatorio, calificacion) =>sumatorio + calificacion;
+let sumatorio2 = calificaciones.reduce(CalcularSumatorio,0);
+console.log(`Suma total de las calificaciones: ${sumatorio2} y el promedio es igual a `, sumatorio2/calificaciones.length)
+
 /**
  * 4. Crear y manipular un Objeto
       1. Crea un objeto llamado persona con las propiedades nombre, apellido, edad y ciudad.
@@ -60,3 +98,54 @@ console.log(calificacionesDefinitivas);
       4. Muestra en consola todas las propiedades y sus valores usando un bucle for…in.
  */
 
+      //Crear un nuevo objeto a partir de una clase 
+      class Persona{
+         nombre = "Nombre";
+         apellido = "Apellido";
+         edad = 18;
+         ciudad = "Madrid";
+
+      }
+
+      //Cambiar la ciudad
+      const persona1 = new Persona();
+      console.log(persona1);
+
+      //Cambiar ciudad
+      persona1.ciudad = "Barcelona";
+      console.log(persona1);
+
+      //Agregar un nuevo atributo
+      persona1.puesto = "Developer";
+      console.log(persona1);
+
+      //Agregar un array de telefonos
+      persona1.telefonos = ["634566223","362266223"];
+      console.log(persona1);
+      
+      //Muestra en consola todas las propiedades y sus valores usando un bucle for…in.
+
+      for (const key in persona1) {
+         if (Persona.hasOwnProperty.call(persona1, key)) {//Comprueba si existe la clave en el objeto
+            const element = persona1[key];
+            console.log(element);
+         }
+      }
+      //Otra forma
+
+      for (const propiedad in persona1) {
+        console.log(`${propiedad} = ${persona1[propiedad]}`);
+      }
+/**
+ * 
+for: cuando iteramos sobre una estructura de datos utilizando un i (índice) como posición
+
+for of: cuando iteramos sobre estructuras de datos como arrays, set o mapas y solo queremos los valores
+
+for in: cuando iteramos sobre propiedades de un objeto y necesitamos conocer nombres de atributos y sus valores
+
+forEach: recibe una función y ejecuta ese comportamiento sobre cada elemento de la estructura de datos
+ */
+
+
+     

@@ -7,3 +7,5 @@ console.log(preciosSinIVA);
 let IVA = preciosSinIVA => preciosSinIVA * 1.21;
 let preciosConIVA = preciosSinIVA.map(IVA);
 console.log(preciosConIVA)
+
+//let preciosConIVA =  preciosSinIVA.map(precio=> precio + precio * 0.21); // Otra forma de hacer
