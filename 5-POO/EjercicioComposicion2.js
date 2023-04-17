@@ -38,5 +38,8 @@ let event1 = new Event("Clase de JavaScript", dateToday, user1);
 
 event1.addUser(user2);
 event1.addUser(user3);
+event1.addUser(user4);
 
 console.log(event1);
+console.log(`Hay un total de ${event1.users.length} de usuarios`);
+console.log(`La reunion ${event1.title} ha sido organizada por ${event1.adminUser.firstName}`)
