@@ -153,25 +153,60 @@ class ActivityDatabase {
         return activity;
     }
 
+    update2(activity) {
+
+        let activityIndex = this.activities.findIndex(
+            currentActivity => currentActivity.id === activity.id
+        );
+        if (activityIndex === -1)
+            return undefined;
+
+        let updatedAct = {...this.activities[activityIndex] , ...activity};
+
+        this.activities[activityIndex] = updatedAct;
+    }
+
+    /**
+     * Borra un objeto activity del array de activities en base a su id
+     * DELETE FROM activities WHERE id = X
+     * @param {*} id el número id del activity que hay que borrar
+     */
     deleteById(id) {
 
         let activityIndex = this.activities.findIndex(activity => activity.id === id);
 
+        if (activityIndex === -1)
+            return;
+
         this.activities.splice(activityIndex, 1);
+    }
+
+    /**
+     * Vacía el array de activities, lo deja a length 0
+     * DELETE FROM activities
+     */
+    deleteAll() {
+        this.activities = [];
+    }
+
+    /**
+     * Devuelve el número de activities en base de datos
+     * @returns 
+     */
+    count() {
+        return this.activities.length;
     }
 
 }
 
-// Paso 3: crear objetos y probar los métodos CRUD para simular una base de datos
-let activityDatabase = new ActivityDatabase();
-let reunionTrabajo = new Activity(
-    undefined, 
-    "Reunión JavaScript", 
-    "tratar caso práctico", 
-    "En progreso",
-    "Media",
-    new Date("2023-04-18")
-    );
+ // ======================================= CREAR OBJETO BASE DE DATOS ==============================
+
+ let activityDatabase = new ActivityDatabase();
+
+
+  // ======================================= CREAR OBJETOS ACTIVITY ==============================
+
+let reunionTrabajo = new Activity(undefined, "Reunión JavaScript", "tratar caso práctico", "En progreso","Media", new Date("2023-04-18"));
 let running = new Activity(
     undefined,
     "Entrenamiento cardiovascular",
@@ -188,6 +223,10 @@ let gym = new Activity(
     "Normal",
     new Date("2023-04-14")
 );
+
+
+  // ======================================= AÑADIR ACTIVITY A BASE DE DATOS: addActivity ==============================
+
 reunionTrabajo = activityDatabase.addActivity(reunionTrabajo); // id 1
 console.log(reunionTrabajo.id);
 
@@ -196,14 +235,6 @@ console.log(running.id);
 
 gym = activityDatabase.addActivity(gym); // id 3
 console.log(gym.id);
-
-
-
-
-
-activityDatabase.deleteById(2);
-
-
 
 
 
@@ -238,5 +269,28 @@ activityDatabase.update(activity1Edited);
 
 console.log(activityDatabase.filterById(1));
 
-let act999 = new Activity(999, "modificado", undefined, "rechazado", undefined, undefined)
+// probar a buscar un activity que no exista
+let act999 = new Activity(975, "modificado", undefined, "rechazado", undefined, undefined)
 console.log(activityDatabase.update(act999)); // undefined
+
+ // ======================================= ACTUALIZAR: upate2 ==============================
+let original1 = activityDatabase.filterById(1);
+let act1 = new Activity(1, "PRUEBA UPDATE2", original1.content, "STATUS UPDATE2", "IMPORTANCE UPDATE2", new Date("2028-01-01"));
+activityDatabase.update2(act1); // actualiza en base de datos
+
+let act2 = {
+    id: 2,
+    title: "TITULO MODIFICADO DESDE UPDATE2"
+}
+activityDatabase.update2(act2);
+
+
+ // ======================================= BORRAR: deleteById ==============================
+console.log(activityDatabase.count()); // before (5)
+activityDatabase.deleteById(2);
+console.log(activityDatabase.count()); // before - 1 (4)
+
+ // ======================================= BORRAR: deleteAll ==============================
+console.log(activityDatabase.count()); // (5)
+activityDatabase.deleteAll(); // borra todo
+console.log(activityDatabase.count()); // 0 (0)
