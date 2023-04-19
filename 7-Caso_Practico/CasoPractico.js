@@ -1,11 +1,14 @@
-/**
- * CASO PRACTICO INDIVIDUAL
- * 1-Crear una clase tarea: constructor con atributos
- * 2-Crear clase TareaService: o TareaDatabas que es una clase
- *  con metodos para simular una base de datos, dentro tiene un array 
- * de tareas
- * 3-Crear objetos de ambas clases Activity
- */
+
+/*
+
+CASO PRACTICO INDIVIDUAL
+
+1. Crear clase Tarea: constructor con atributos
+2. Crear clase TareaService o TareaDatabase que es una clase con métodos para simular una base de datos, dentro tiene
+un array de Tareas
+3. Crear objetos de ambas clases y probar el programa
+
+*/
 // Paso 1: Crear una clase Activity
 
 class Activity {
@@ -16,14 +19,16 @@ class Activity {
         this.content = content;
         this.status = status;
         this.importance = importance;
-        this.date = date;//Campo tipo fecha Date
+        this.date = date; // campo tipo fecha Date
     }
 }
 
-// Paso 2: Crear una clase con métodos para trabajar con objetos Activity
+// Paso 2: Crear una clase base de datos con métodos para trabajar con objetos Activity
 /*
 Crear una clase que represente un servicio de tareas que tenga como atributo una estructura de
 datos de tareas y métodos para gestionar las tareas:
+
+    Operaciones CRUD: Create, Retrieve, Update, Delete
 • Añadir una nueva tarea OK
 • Devolver todas las tareas OK
 * Devolver tarea por id OK
@@ -35,31 +40,29 @@ datos de tareas y métodos para gestionar las tareas:
 class ActivityDatabase {
 
     constructor() {
-        this.activities = [];// Inicializar la base de datos.
+        this.activities = []; // inicializar la base de datos
     }
+
     /**
-     * Añadir una nueva actividad en el array de actividades
-     * Para cada actividad que se quiere añadir, genera un nuevo id que esté libre
-     * 
-        Para simular una base de datos, generamos un id (1, 2, 3, ...) único para cada Activity
+     * Añade una nueva actividad en el array de actividades en consecuencia el array crece
+     * Para cada nueva actividad que se quiere añadir, genera un nuevo id que esté libre
+     * Para simular una base de datos, generamos un id (1, 2, 3, ...) único para cada Activity
         con un bucle for o con la clase Math calcular el id más alto de todos los ids 
-        
-     * @param {*} activity obejto de la clase Activity
+     * @param {*} activity objeto de la clase Activity
      * @returns devuelve la actividad con un nuevo id asignado
      */
-
     addActivity(activity) {
-        
-        activity.id = this.#generateNextId2();//asigna el nuevo id calculado en el objeto activity antes de guardarlo en el array
+        activity.id = this.#generateNextId2(); // asigna el nuevo id calculado en el objeto activity antes de guardarlo en el array
         this.activities.push(activity);
         return activity;
     }
+
     /**
-     * el # lo hace privado.
-     * Primero calcula cual es el id (int) mas alto de todos los ids pertenecientes 
-     * a los objetos actividad del array activities
-     * una vez que obtiene el id maximo en la variable maxId entonces
-     * lo incrementa porque esa sera el siguiente id
+     * Primero calcula cuál es el id (int) más alto de todos los ids pertenecientes 
+     * a los objetos actividad del array activities. 
+     * Una vez que obtiene el id máximo en la variable maxId entonces lo incrementa porque esa será el siguiente nuevo id
+     * 
+     * Utiliza for y if 
      * @returns 
      */
     #generateNextId() {
@@ -68,83 +71,86 @@ class ActivityDatabase {
             if (currentActivity.id > maxId)
                 maxId = currentActivity.id;
         }
-        return ++maxId;//operador incremento ++ va a la izquierda: primero asigna y luego hace el return
+        return ++maxId; // operador incremento ++ va la izquierda: primero asigna y luego hace el return
     }
+
     /**
-     * Primero calcula cual es el id(int) mas alto de todos los ids pertenecientes
-     * a los objetos actividad del array activities
-     * Una vez que obtiene el id maximo en la varibale maxId entoces lo incrementa porque esa sera el siguiente nuevo id
+     * Primero calcula cuál es el id (int) más alto de todos los ids pertenecientes 
+     * a los objetos actividad del array activities. 
+     * Una vez que obtiene el id máximo en la variable maxId entonces lo incrementa porque esa será el siguiente nuevo id
      * 
      * Utiliza map y Math.max
      * @returns 
      */
-   
     #generateNextId2() {
 
         if (this.activities.length === 0)
             return 1;
 
-        // utilizar el método map() para obtener un array de ids
+        // utilizar el método map() para obtener un array de ids. Utilizamos map para extraer el id de cada activity
         let ids = this.activities.map( activity => activity.id );
-        console.log(ids);
 
         // Obtener el id máximo utilizando Math.max()
-        let maxId = Math.max(...ids);//Se utiliza el operador ... para desglosar el array en elementos
+        let maxId = Math.max(...ids); // se utiliza el operador ... para desglosar el array en elementos
         return ++maxId;
 
     }
+
     /**
-     * Devuelve el array de acividades SELECT * FROM activities
+     * Devuelve el array de actividades. SELECT * FROM activities
      * @returns 
      */
-
     findAll() {
-        return this.activities;//devuelve todas las actividades
+        return this.activities;
     }
+
     /**
-     * Devuelve un  objeto activity SELECT * FROM activities WHERE id = X
+     * Devuelve un objeto activity. SELECT * FROM activities WHERE id = X
      * @param {*} id numero id de la actividad a buscar
-     * @returns el objeto actividad
+     * @returns el objeto actividad si existe o undefined si no se encuentra
      */
-
     filterById(id) {  // filtrar por ID filterById(1)
-        
         let results = this.activities.filter(activity => activity.id === id);
-        if(results.length === 1)
-        return results[0];
+        if (results.length === 1)
+            return results[0];
     }
-    /**
-     * Devuelve un array de activities con el estado solicitado por parametro
-     * @param {*} status  un string que reprensenta un estado de tarea: "EN PROGRESO", "TERMINADO"
-     * @returns array de actividades o un array vacio
-     */
 
+    /**
+     * Devuelve un array de activities con el estado solicitado por parámetro
+     * @param {*} status un string que representa un estado de tarea: "EN PROGRESO", "TERMINADO"
+     * @returns array de actividades o un array vacío
+     */
     filterByStatus(status) { //devuelve una estructura de datos filterByStatus("En progreso");
         return this.activities.filter(activity => activity.status === status);
     }
-    /**
-     * Devuelve un array de actividades filtrando por el titulo, no es coincidencia estricta o exacta, se busca que contenga
-     * @param {*} title palabras a buscar en el titulo de activity
-     * @returns array de actividades o un array 
-     */
 
-    filterByTitle(title) { //filterByTitle("Reunión");
+    /**
+     * Devuelve un array de actividades filtrando por el título, no es coincidencia estricta o exacta, se busca que contenga
+     * @param {*} title palabras a buscar en el título del activity
+     * @returns array de actividades o un array vacío
+     */
+    filterByTitle(title) { 
         return this.activities.filter(activity => activity.title.includes(title));
+        // return this.activities.filter(activity => activity.title === title);
     }
 
-    // modifica un objeto activity que ya existe en el array de activities
+    
     /**
      * Actualiza un objeto activity existente en el array de activities
      * @param {*} activity a actualizar con el id correcto y los atributos editados
+     * @returns objeto activity actualizado o undefined si no lo encuentra
      */
     update(activity) {
 
         let activityIndex = this.activities.findIndex(
             currentActivity => currentActivity.id === activity.id
         );
+        if (activityIndex === -1)
+            return undefined;
 
         this.activities[activityIndex].title = activity.title;
         this.activities[activityIndex].status = activity.status;
+        return activity;
     }
 
     deleteById(id) {
@@ -192,31 +198,45 @@ gym = activityDatabase.addActivity(gym); // id 3
 console.log(gym.id);
 
 
-let activity1 = activityDatabase.filterById(1);
-let activity2 = activityDatabase.filterById(2);
-let activitiesByStatus = activityDatabase.filterByStatus("Pendiente");
-let activitiesByTitle = activityDatabase.filterByTitle("Entrenamiento");
+
+
 
 activityDatabase.deleteById(2);
 
 
 
 
- // ======================================= ACTUALIZAR: update ==============================
+
+
+ // ======================================= BUSCAR UNO: filterById ==============================
+
+console.log(activityDatabase.filterById(1));
+console.log(activityDatabase.filterById(999));
+
+
+
+ // ======================================= BUSCAR POR STATUS: filterByStatus ==============================
+
+ console.log(activityDatabase.filterByStatus("Pendiente"));
+ console.log(activityDatabase.filterByStatus("No existe"));
+
+
+
+ // ======================================= BUSCAR POR TITULO: filterByTitle ==============================
+
+ console.log(activityDatabase.filterByTitle("Entrenamiento"));
+ console.log(activityDatabase.filterByTitle("No existe"));
+
+
+ 
+ // ======================================= ACTUALIZAR: upate ==============================
 
 console.log(activityDatabase.filterById(1));
 
 let activity1Edited = new Activity(1, "modificado", undefined, "rechazado", undefined, undefined)
 activityDatabase.update(activity1Edited);
 
-//==================================== BUSCAR UNO: filterById =======================
-
 console.log(activityDatabase.filterById(1));
-console.log(activityDatabase.filterById(999));
 
-//==================================== BUSCAR UNO STATUS: filterByStatus =======================
-console.log(activitiesDatabase.filterByStatus("Pendiente"));
-console.log(activitiesDatabase.filterByStatus("No existe"));
-
-//==================================== BUSCAR UNO TITULO: filterByTiitle =======================
-console.log()
+let act999 = new Activity(999, "modificado", undefined, "rechazado", undefined, undefined)
+console.log(activityDatabase.update(act999)); // undefined
