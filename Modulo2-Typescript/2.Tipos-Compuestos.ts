@@ -80,5 +80,5 @@ let persona: object = {
     lastName: 'Ejemplo apellido'
 }
 console.log(typeof persona);
-
+console.log(persona);
 
