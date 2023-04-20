@@ -1,43 +1,40 @@
-// Number
-let age: number = 25;
-console.log('Age:', age);
+/*
+Tipos de datos básicos
 
-// String
-let theName: string = 'John Doe';
-console.log('Name:', theName);
+tsc m2-typescript/1.Variables/1.tipos_basicos.ts
+*/
 
-// Boolean
-let isStudent: boolean = true;
-console.log('Is student:', isStudent);
+// boolean
+let esValido = true;
+let esCorrecto: boolean = false;
+let prueba: boolean = true;
+console.log(prueba);
 
-// Null
-let empty: null = null;
-console.log('Empty:', empty);
 
-// Undefined
-let notDefined: undefined = undefined;
-console.log('Not defined:', notDefined);
+// number
+let count2: number = 42;
+let price: number = 19.99;
 
-// Const
-const pi: number = 3.14159;
-console.log('Pi:', pi);
 
-//Void
+// string
+let firstName: string = 'John Doe';
+let greeting: string = `Hello, ${firstName}!`;
+
 function logMessage(message: string): void {
     console.log(message);
-  }
+}
 
-//==========================================
-let unknownVar: unknown = 'Hello, World!';
-let stringVar: string = unknownVar as string; // Type Assertion usando 'as'
+function returnMessage(message: string): string {
+    //return 5;
+    return "hola mundo " + message;
+}
 
-//Operadores de tipo 
-function isString(value: any): value is string {
-    return typeof value === 'string';
-  }
-  if (isString(unknownVar)) {
-    console.log('unknownVar is a string');
-  } else {
-    console.log('unknownVar is not a string');
-  }
-  
+let saludo: string = returnMessage("Alan");
+console.log(saludo);
+console.log(returnMessage("Otra prueba"));
+
+let nombre: string = "Mi nombre";
+// nombre = 50; // error TS2322: Type 'number' is not assignable to type 'string'.
+
+let cualquiercosa: any = 5;
+cualquiercosa = "otra cosa";
