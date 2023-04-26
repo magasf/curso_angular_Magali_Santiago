@@ -1,4 +1,4 @@
-import { Isuermarket } from "./supermarket.model";
+import { ISupermarket } from "./supermarket.model";
 
 //Many products To One
 export interface IProduct {
@@ -6,5 +6,5 @@ export interface IProduct {
     title: string;
     price: number;
     quantity: number; //stock: cantidad de producto disponible
-    supermarket: Isuermarket;
+    supermarket?: ISupermarket | undefined;
 }
