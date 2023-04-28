@@ -13,7 +13,7 @@ class Task {
 
     }
 }
-class TaskService{
+class TasksDatabase{
     constructor(){
         this.tasks = [];
     }
@@ -49,4 +49,41 @@ class TaskService{
         return this.tasks.filter(mission => mission.status === status);
     }
 
+    update(mission){
+        let taskIndex = this.tasks.findIndex(
+            currentTask => currentTask.id === mission.id
+        );
+        if(taskIdex === -1)
+            return undefined;
+        
+        let updateTask = {...this.tasks[taskIndex], ...mission};
+
+        this.tasks[taskIndex] = updateTask;
+    }
+
+    deleteById(id){
+        let taskIndex = this.tasks.findIndex(mission => mission.id === id);
+
+        if(taskIndex === -1)
+        return;
+
+        this.tasks.splice(taskIndex, 1);
+    }
+    deleteAll() {
+        this.tasks = [];
+    }
+
+    count() {
+        return this.tasks.length;
+    }
+
 }
+
+let tasksDatabase = new TasksDatabase();
+
+
+let lavarRopa = new Task(undefined,"Lavar ropa", "Ropa negra y ropa de trabajo", "Pending","Low", new Date("2023-04-20"));
+let comidaSemanal = new Task(undefined,"Comida semanal", "Dieta balanceada de proteinas, verduras y frutas", "Complete","Middle", new Date("2023-03-11"));
+let medico = new Task(undefined,"Cita medica", "Ginecologo, chequeo anual", "in progress","Middle", new Date("2023-04-25"));
+
+lavarRopa = tasksDatabase.addTask(lavarRopa);
