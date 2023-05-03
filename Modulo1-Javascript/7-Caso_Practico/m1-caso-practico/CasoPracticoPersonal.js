@@ -87,3 +87,27 @@ let comidaSemanal = new Task(undefined,"Comida semanal", "Dieta balanceada de pr
 let medico = new Task(undefined,"Cita medica", "Ginecologo, chequeo anual", "in progress","Middle", new Date("2023-04-25"));
 
 lavarRopa = tasksDatabase.addTask(lavarRopa);
+comidaSemanal = tasksDatabase.addTask(comidaSemanal);
+medico = tasksDatabase.addTask(medico);
+console.log(lavarRopa)
+console.log(comidaSemanal)
+console.log(medico)
+
+console.log(".....................................");
+
+console.log(tasksDatabase.filterById(2));
+console.log(tasksDatabase.filterById(7));
+
+console.log(".....................................");
+
+console.log(tasksDatabase.filterByStatus("Complete"));
+console.log(tasksDatabase.filterByStatus("Next"));
+
+console.log(".....................................");
+
+console.log(tasksDatabase.filterByTitle("Comida"));
+console.log(tasksDatabase.filterByTitle("Algo"));
+
+
+console.log(".....................................");
+console.log()
