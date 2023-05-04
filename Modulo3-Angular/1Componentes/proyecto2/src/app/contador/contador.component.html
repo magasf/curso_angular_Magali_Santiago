@@ -1,0 +1,17 @@
+
+
+<div>
+    <p>Contador: {{contador}}</p>
+    <button (click)= "incrementar()">+</button>
+    <button (click)= "decrementar()">-</button>
+    <button (click)= "resetear()">Reset</button>
+
+</div>
+
+<div style= "margin-top:50px;">
+    
+    <p *ngIf= "saludo">Saludo: {{saludo}}</p>
+    <button (click)= "saludar()">Saludar</button>
+    <button (click)= "quitarSaludo()">Quitar Saludo</button>
+
+</div>
