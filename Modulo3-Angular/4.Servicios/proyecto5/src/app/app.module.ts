@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { TasksModule } from './tasks/tasks.module';
-import { UsersModule } from './users/users.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +10,7 @@ import { UsersModule } from './users/users.module';
   ],
   imports: [
     BrowserModule,
-    TasksModule,
-    UsersModule,
-    
+    UsuariosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

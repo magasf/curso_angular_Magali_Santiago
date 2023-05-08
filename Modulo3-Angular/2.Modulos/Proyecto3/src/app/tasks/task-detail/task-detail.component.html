@@ -1,0 +1,8 @@
+
+<h2>Detalle de tarea</h2>
+
+
+
+<p [ngClass]= "task.hours >= 1 ? 'red' : 'green'">ID: {{task.id}}</p>
+<p>Title: {{task.title}}</p>
+<p [ngStyle]="{'color': fontColor}" >Hours: {{task.hours}}</p>

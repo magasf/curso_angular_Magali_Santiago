@@ -1,0 +1,19 @@
+
+<div>
+    <table style="margin: 50px;" class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let task of tasks" >
+                <td style="padding: 30px;" class="idChange">{{task.id}}</td>
+                <td style="padding: 30px;">{{task.title}}</td>
+                <td style="padding: 30px;">{{task.hours}}</td>
+            </tr>
+        </tbody>
+      </table>
+</div>
