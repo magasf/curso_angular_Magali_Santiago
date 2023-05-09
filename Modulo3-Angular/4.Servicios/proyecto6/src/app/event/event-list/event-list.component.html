@@ -1,0 +1,10 @@
+ <h2>Listado de Eventos ToDos</h2>
+ <ul>
+    <li *ngFor= "let event of events">
+        <span [ngClass]="event.completed ? 'completed' : 'unCompleted'">
+
+            {{event.id}} {{event.userId}} {{event.title}} {{event.completed}}
+        </span>
+
+    </li>
+ </ul>
