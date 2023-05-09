@@ -5,9 +5,12 @@ import { IUser } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  users: IUser[] = []
+  users: IUser[] = [];
+  
 
-  constructor() { }
+  constructor() {
+    
+  }
   save(user: IUser): void {
     this.users.push(user);
 
@@ -16,6 +19,11 @@ export class UserService {
     return this.users.find(user => user.email === email);
     
   }
+  findAll(): IUser[]{
+    //return new Array(...this.users);
+    return Array.from(this.users);
+  }
+  
 }
 /**
  * 1-En el componente UserDetailComponent agregar en el constructor el servicio UserService encapsulado

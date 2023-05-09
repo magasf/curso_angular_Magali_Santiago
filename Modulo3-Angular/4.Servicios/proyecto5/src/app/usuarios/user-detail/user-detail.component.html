@@ -1,1 +1,29 @@
-<p>user-detail works!</p>
+<div>
+    <h3>Crear usuarios</h3>
+    <ul>
+        <li *ngFor= "let user of users">
+            {{user.email}}
+        </li>
+    </ul>
+    <input type="email" [(ngModel)]= "userEmail">
+    <button (click)="save()">Guardar usuario</button>
+</div>
+<!--Mostrar input para buscar por email
+Mostrar boton para realizar la busqueda
+Debe aparecer un parrafo que diga si existe el email o not found
+-->
+
+<div>
+    <h3>Buscar usuario por Email</h3>
+    <input type="email" [(ngModel)]= "searchEmail">
+    <button (click)="findByEmail()">Buscar usuario</button>
+
+    <p *ngIf="user">
+        {{user.fullName}} {{user.email}}
+    
+    </p>
+</div>
+<p *ngIf="!user && searched">
+  User not found.
+
+</p>
