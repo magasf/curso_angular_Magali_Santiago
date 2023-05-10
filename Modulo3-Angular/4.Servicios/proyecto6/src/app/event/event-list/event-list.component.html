@@ -1,4 +1,7 @@
  <h2>Listado de Eventos ToDos</h2>
+ <button class="btnCompleted" (click)= "findAllByCompletedTrue()">Ver tareas completas</button>
+ <button class="btnIncompleted" (click)= "findAllByCompletedFalse()">Ver tareas incompletas</button>
+ <button class="btnAll" (click)= "findAllTasks()">Todas las tareas</button>
  <ul>
     <li *ngFor= "let event of events">
         <span [ngClass]="event.completed ? 'completed' : 'unCompleted'">

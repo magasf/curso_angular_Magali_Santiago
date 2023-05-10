@@ -13,10 +13,16 @@ export class EventListComponent implements OnInit {
 
   constructor(private eventService: EventService){  }
   ngOnInit(): void {
-    this.eventService.findAll().subscribe(data => {
-      
-      console.log(data)
-      this.events = data;
-    });
+    this.findAllTasks();
+   
   }
+  findAllByCompletedTrue(): void {
+    this.eventService.findAllByCompletedTrue().subscribe(data => this.events = data);
+  }
+  findAllByCompletedFalse(): void{
+    this.eventService.findAllCompletedFalse().subscribe(data => this.events = data);
+  }
+   findAllTasks(): void {
+     this.eventService.findAll().subscribe(data => this.events = data);
+   }
 }

@@ -17,5 +17,6 @@ export class EventDetailComponent implements OnInit {
     
   }
   
+  
 
 }

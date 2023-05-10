@@ -4,3 +4,26 @@
 .unCompleted{
     color: red;
 }
+.btnIncompleted{
+    background-color: red;
+    color: #ffff;
+    margin: 25px;
+    border: red;
+    padding: 10px;
+
+}
+.btnCompleted{
+    background-color: green;
+    color: #ffff;
+    margin: 25px;
+    border: Green;
+    padding: 10px;
+}
+.btnAll{
+    background-color: black;
+    color: #ffff;
+    margin: 25px;
+    border: black;
+    padding: 10px;
+
+}
