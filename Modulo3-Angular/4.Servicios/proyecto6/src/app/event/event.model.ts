@@ -1,7 +1,7 @@
 // mover datos
 export interface IEvent {
     userId: number;
-    id: number;
+    id: number | undefined;
     title: string;
     completed: boolean;
 }

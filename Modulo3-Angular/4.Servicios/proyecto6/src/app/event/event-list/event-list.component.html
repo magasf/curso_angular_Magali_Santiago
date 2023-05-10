@@ -2,6 +2,18 @@
  <button class="btnCompleted" (click)= "findAllByCompletedTrue()">Ver tareas completas</button>
  <button class="btnIncompleted" (click)= "findAllByCompletedFalse()">Ver tareas incompletas</button>
  <button class="btnAll" (click)= "findAllTasks()">Todas las tareas</button>
+
+ <br>
+ <!-- https://uiverse.io/Mike11jr/soft-mayfly-11 -->
+<button class="btn" (click)="findAllTasks()">
+    Tareas
+</button>
+<button class="btn" (click)="findAllByCompletedTrue()">
+    Completas
+</button>
+<button class="btn" (click)="findAllByCompletedFalse()">
+    Pendientes
+</button>
  <ul>
     <li *ngFor= "let event of events">
         <span [ngClass]="event.completed ? 'completed' : 'unCompleted'">
