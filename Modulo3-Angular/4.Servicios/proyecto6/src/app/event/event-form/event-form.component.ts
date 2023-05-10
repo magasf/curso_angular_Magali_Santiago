@@ -9,6 +9,7 @@ import { IEvent } from '../event.model';
 })
 export class EventFormComponent {
   title: string = ""
+  createEvent: IEvent | undefined;
   constructor(private eventService: EventService){}
   create(): void{
     let event: IEvent = {
@@ -17,6 +18,7 @@ export class EventFormComponent {
       title: this.title,
       completed: false
     }
-    this.eventService.create(event).subscribe(data =>console.log(data))
+    this.eventService.create(event).subscribe(data =>this.createEvent = data)
+    this.title = "";
   }
 }

@@ -2,3 +2,9 @@
 <h3>Titulo event</h3>
 <input type="text" [(ngModel)]= "title">
 <button (click)= "create()">Crear event</button>
+<div *ngIf= "createEvent">
+    <p>Id: {{createEvent.id}}</p>
+    <p>User Id: {{createEvent.userId}} </p>
+    <p>Title: {{createEvent.title}} </p>
+    <p>Completed: {{createEvent.completed}} </p>
+</div>
