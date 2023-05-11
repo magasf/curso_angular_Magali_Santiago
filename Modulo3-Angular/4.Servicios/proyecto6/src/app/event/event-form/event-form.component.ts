@@ -39,10 +39,11 @@ export class EventFormComponent implements OnInit {
     this.title = "";
   }
   update(): void{
-    if (this.eventToUpdate) {
+    if (!this.eventToUpdate)return; //si no hay evento a actualizar
+     
       this.eventToUpdate.title = this.titleToUpdate;
       this.eventService.update(this.eventToUpdate).subscribe(data => console.log(data));
-    }
+    
 
   }
 }
