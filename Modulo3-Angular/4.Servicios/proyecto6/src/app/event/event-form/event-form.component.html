@@ -8,3 +8,6 @@
     <p>Title: {{createEvent.title}} </p>
     <p>Completed: {{createEvent.completed}} </p>
 </div>
+<h3>Actualizar evento</h3>
+<input type="text" [(ngModel)]= "titleToUpdate">
+<button (click)="update()">Actualizar</button>
