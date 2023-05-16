@@ -10,6 +10,9 @@ import { UserListComponent } from './user-list/user-list.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    UserListComponent
   ]
 })
 export class UsersModule { }
