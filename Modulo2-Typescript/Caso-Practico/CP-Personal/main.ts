@@ -12,4 +12,6 @@ let movie1: IMovie ={
     genres: [],
     rate: 0
 }
-console.log(movieService.save(movie1))
+console.log(movieService.save(movie1));
+console.log (movieService.update(movie1));
+console.log(1)
