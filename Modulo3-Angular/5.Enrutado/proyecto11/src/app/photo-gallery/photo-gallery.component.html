@@ -1,1 +1,12 @@
 <p>photo-gallery works!</p>
+<p>photo-gallery works!</p>
+
+<ul>
+    <li *ngFor= "let photo of photos">
+        <a [routerLink]="['/photo-detail', photo.id]">
+            <img src= "{{photo.thumbnailUrl}} ">
+
+        </a>
+        <span>{{photo.id}} </span>
+    </li>
+</ul>
