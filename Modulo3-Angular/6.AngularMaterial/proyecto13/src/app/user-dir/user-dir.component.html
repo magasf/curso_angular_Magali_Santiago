@@ -1,1 +1,9 @@
-<p>user-dir works!</p>
+<h3>Three line lists</h3>
+<mat-list>
+  <mat-list-item *ngFor="let user of users">
+    <img matListItemAvatar src="{{user.avatar}}" alt="{{user.fullName}}">
+    <span matListItemTitle>{{user.fullName}}</span>
+    <span matListItemLine>{{user.email}}</span>
+    <span matListItemLine>{{user.bio}}</span>
+  </mat-list-item>
+</mat-list>

@@ -49,5 +49,3 @@ console.log(!condicion3);
 
 
 
-
-

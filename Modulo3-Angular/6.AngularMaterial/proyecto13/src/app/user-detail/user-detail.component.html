@@ -1,0 +1,22 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{user.fullName}}</mat-card-title>
+      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <div style="text-align: center;">
+        <img style="max-width: 200px;" mat-card-image src="{{user.avatar}}" alt="{{user.fullName}}">
+    </div>
+    <mat-card-content>
+      <p>
+        {{user.bio}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+    <mat-card-footer>
+      Copyright 2023
+    </mat-card-footer>
+  </mat-card>
