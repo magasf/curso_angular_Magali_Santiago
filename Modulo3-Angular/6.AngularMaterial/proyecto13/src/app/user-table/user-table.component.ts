@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IUser } from '../user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-table',
@@ -7,7 +8,7 @@ import { IUser } from '../user.model';
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent {
-  displayedColumns: string[] = ['fullName', 'email','avatar'];
+  displayedColumns: string[] = ['avatar','fullName', 'email', 'actions'];
   users: IUser[] = [
     {
       fullName: "Juan Garcia",
@@ -40,6 +41,23 @@ export class UserTableComponent {
       avatar: "/assets/img/user-avatar2.png"
     },
   ];
+  //constructor(private router: Router){}
+  view(user: IUser): void{
+    //this.rrouter.navigate
+    console.log(user);
+  }
+  edit(user: IUser): void{
+    //this.rrouter.navigate
+    console.log(user);
+  }
+  deleteUser(user: IUser): void{
+    //this.rrouter.navigate
+    console.log(user);
+  }
+  create(): void{}
+  deleteAll(): void{
+
+  }
 
 
 }

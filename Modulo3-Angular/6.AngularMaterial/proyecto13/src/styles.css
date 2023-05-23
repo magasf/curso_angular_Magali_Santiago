@@ -1,4 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Wix Madefor Display', "Helvetica Neue", sans-serif !important; }
+table td, h2{
+  font-family: 'Wix Madefor Display', "Helvetica Neue", sans-serif !important;
+}
+.btn-primary {
+  background-color: #0d6efd !important;
+}
+
+.btn-secondary {
+  background-color: #0d6efd !important;
+}
+
+.btn-success {
+  background-color: #198754 !important;
+}
+
+.btn-warn {
+  background-color: #ffc107 !important;
+}
+
+.btn-error {
+  background-color: #dc3545 !important;
+}
