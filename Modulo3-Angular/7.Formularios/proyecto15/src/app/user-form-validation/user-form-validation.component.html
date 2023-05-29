@@ -1,1 +1,72 @@
-<p>user-form-validation works!</p>
+
+<form [formGroup]="userForm" (ngSubmit)="save()">
+  <!--Nombre Completo-->
+  <div>
+    <label for="fullName">Nombre completo <span style ="color: red;">*</span></label>
+    <input type="text" id="fullName" formControlName="fullName">
+    <div>
+      <span *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched">
+        Nombre obligatorio
+      </span>
+
+    </div>
+  </div>
+  <!--Correo Electronico-->
+  <div>
+    <label for="email">Correo Electrónico <span>*</span></label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      <span *ngIf="userForm.get('email')?.getError('required')">
+        Email obligatorio.
+      </span>
+      <span *ngIf="userForm.get('email')?.getError('email')">
+        Formato incorrecto, ejemplo: hola@example.com
+      </span>
+    </div>
+  </div>
+  <!--Nombre Usuario-->
+  <div>
+    <label for="nickName">Nombre de usuario <span>*</span></label>
+    <input type="text" id="nickName" formControlName="nickName">
+    <div *ngIf="userForm.get('nickName')?.invalid && userForm.get('nickName')?.touched">
+      <span *ngIf="userForm.get('nickName')?.getError('required')">
+        Email obligatorio.
+      </span>
+      <span *ngIf="userForm.get('nickName')?.getError('minlength') ||
+                    userForm.get('nickName')?.getError('maxlength') ">
+        Longitud comprendida entre 5 y 15 caracteres.
+      </span>
+    </div>
+  </div>
+  <!--Salario-->
+  <div>
+    <label for="salary">Salario <span>*</span></label>
+    <input type="number" step="0" id="salary" formControlName="salary">
+    <div *ngIf="userForm.get('salary')?.invalid && userForm.get('salary')?.touched">
+      <span *ngIf="userForm.get('salary')?.getError('required')">
+        Salario obligatorio.
+      </span>
+      <span *ngIf="userForm.get('salary')?.getError('min') ||
+                    userForm.get('salary')?.getError('max') ">
+        Salario comprendido entre 16500 y 100000 €
+      </span>
+    </div>
+  </div>
+  <!--NIF-->
+  <div>
+    <label for="nif">Documento identidad (NIF) <span>*</span></label>
+    <input type="text" id="nif" formControlName="nif">
+    <div *ngIf="userForm.get('nif')?.invalid && userForm.get('nif')?.touched">
+      <span *ngIf="userForm.get('nif')?.getError('required')">
+          NIF obligatorio.
+      </span>
+      <span *ngIf="userForm.get('nif')?.getError('pattern')">
+        NIF debe tener formato correcto 8 numeros y 1 letra, ejemplo: 12312314K
+      </span>
+    </div>
+  </div>
+  
+
+  
+    <button type="submit" [disabled]="userForm.invalid">Guardar</button>
+  </form>
