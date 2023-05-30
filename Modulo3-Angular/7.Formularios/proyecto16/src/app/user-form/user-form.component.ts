@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormControl,FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -9,11 +9,14 @@ import { FormGroup, Validators } from '@angular/forms';
 export class UserFormComponent {
   userForm = new FormGroup({
 
-    fullName: new FormGroup('',[Validators.required])
-  
+    fullName: new FormControl('',[Validators.required]),
+    bio: new FormControl('', [Validators.required, Validators.maxLength(256)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    isStudent: new FormControl(false)
   });
 
-  Save(): void {
+  save(): void {
+    console.log(this.userForm)
 
   }
 
