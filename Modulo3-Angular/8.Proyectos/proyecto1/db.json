@@ -2,23 +2,23 @@
   "books": [
     {
       "id": 1,
-      "title": "Toy Story That Time Forgot",
+      "title": "Toy Story That Time Forgot editado",
       "sinopsis": "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec",
       "release": "2023-04-29T22:00:00.000Z",
       "numPages": 408,
-      "photo": "http://dummyimage.com/192x100.png/dddddd/000000",
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 37.36,
-      "authorId": 6
+      "authorId": 0
     },
     {
       "id": 2,
-      "title": "First Sunday",
+      "title": "First Sunday of june",
       "sinopsis": "curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi",
       "release": "2023-04-29T22:00:00.000Z",
       "numPages": 498,
-      "photo": "http://dummyimage.com/170x100.png/dddddd/000000",
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 72.31,
-      "authorId": 3
+      "authorId": 0
     },
     {
       "id": 3,
@@ -118,6 +118,16 @@
       "numPages": 102,
       "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 6,
+      "authorId": 0
+    },
+    {
+      "id": 13,
+      "title": "nuevo libro alan editado",
+      "sinopsis": "ejemplo",
+      "release": "2023-06-05T11:59:23.239Z",
+      "numPages": 40,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 40,
       "authorId": 0
     }
   ],

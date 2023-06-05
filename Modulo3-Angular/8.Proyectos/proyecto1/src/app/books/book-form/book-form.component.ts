@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 /**
 
- * 2- En HTML agregar un nuevo matformfield disabled que muestre id pero no lo edite
+ 
  * 3- En save hacer la distincion de guardar o editar
  * 4- En loadForm hay que cargar el id
  */
@@ -46,6 +46,7 @@ export class BookFormComponent implements OnInit {
   loadBookForm(book: IBook): void {
 
     this.bookForm.reset({
+      id: book.id,
       title: book.title,
       sinopsis: book.sinopsis,
       numPages: book.numPages,
@@ -55,6 +56,8 @@ export class BookFormComponent implements OnInit {
   }
 
   save(): void {
+
+    let id = this.bookForm.get('id')?.value ?? 0;
     let title = this.bookForm.get('title')?.value ?? '';
     let sinopsis = this.bookForm.get('sinopsis')?.value ?? '';
     let numPages = this.bookForm.get('numPages')?.value ?? 30;
@@ -65,7 +68,7 @@ export class BookFormComponent implements OnInit {
     // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
 
     let book: IBook = {
-      id: 0,
+      id: id,
       title: title,
       sinopsis: sinopsis,
       release: release,
@@ -74,8 +77,11 @@ export class BookFormComponent implements OnInit {
       price: price,
       authorId: 0
     }
-
-    this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
+    
+    if(id === 0)// crear un nuevo libro
+      this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
+    else  // editar libro existente
+      this.bookService.update(book).subscribe(book => this.router.navigate(['/books', book.id]));
   }
 
 }

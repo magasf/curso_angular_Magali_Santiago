@@ -1,12 +1,12 @@
-<h2>Creación de libro</h2>
 
 
+<h2 *ngIf="bookForm.get('id')?.value === 0">Creación de libro</h2>
+<h2 *ngIf="!(bookForm.get('id')?.value === 0)">Editando libro {{bookForm.get('id')?.value}} </h2>
 <form [formGroup]="bookForm" (ngSubmit)="save()">
 
-  <mat-form-field>
-    <mat-label>Id</mat-label>
-    <input matInput type="number" formControlName="id">
-  </mat-form-field>
+  
+    <input type="hidden" formControlName="id">
+  
   <mat-form-field>
     <mat-label>Título</mat-label>
     <input matInput type="text" formControlName="title">
