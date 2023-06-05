@@ -1,0 +1,222 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Toy Story That Time Forgot",
+      "sinopsis": "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 408,
+      "photo": "http://dummyimage.com/192x100.png/dddddd/000000",
+      "price": 37.36,
+      "authorId": 6
+    },
+    {
+      "id": 2,
+      "title": "First Sunday",
+      "sinopsis": "curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 498,
+      "photo": "http://dummyimage.com/170x100.png/dddddd/000000",
+      "price": 72.31,
+      "authorId": 3
+    },
+    {
+      "id": 3,
+      "title": "Eddie and the Cruisers II: Eddie Lives!",
+      "sinopsis": "aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 323,
+      "photo": "http://dummyimage.com/184x100.png/ff4444/ffffff",
+      "price": 28.62,
+      "authorId": 4
+    },
+    {
+      "id": 4,
+      "title": "Elizabeth I",
+      "sinopsis": "morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 423,
+      "photo": "http://dummyimage.com/137x100.png/dddddd/000000",
+      "price": 50.44,
+      "authorId": 3
+    },
+    {
+      "id": 5,
+      "title": "Too Beautiful for You (Trop belle pour toi)",
+      "sinopsis": "vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 442,
+      "photo": "http://dummyimage.com/199x100.png/ff4444/ffffff",
+      "price": 57.52,
+      "authorId": 10
+    },
+    {
+      "id": 6,
+      "title": "Summer's Tale, A (Conte d'été)",
+      "sinopsis": "sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 785,
+      "photo": "http://dummyimage.com/118x100.png/cc0000/ffffff",
+      "price": 11.48,
+      "authorId": 5
+    },
+    {
+      "id": 7,
+      "title": "Late Quartet, A",
+      "sinopsis": "tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 184,
+      "photo": "http://dummyimage.com/161x100.png/ff4444/ffffff",
+      "price": 7.21,
+      "authorId": 9
+    },
+    {
+      "id": 8,
+      "title": "Unstoppable",
+      "sinopsis": "est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 606,
+      "photo": "http://dummyimage.com/163x100.png/cc0000/ffffff",
+      "price": 16.51,
+      "authorId": 3
+    },
+    {
+      "id": 9,
+      "title": "Soldier's Plaything, A",
+      "sinopsis": "quam a odio in hac habitasse platea dictumst maecenas ut massa quis",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 286,
+      "photo": "http://dummyimage.com/242x100.png/dddddd/000000",
+      "price": 99.73,
+      "authorId": 5
+    },
+    {
+      "id": 10,
+      "title": "Wolf",
+      "sinopsis": "metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend",
+      "release": "2023-04-29T22:00:00.000Z",
+      "numPages": 144,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 26.4,
+      "authorId": 10
+    },
+    {
+      "id": 11,
+      "title": "prueba otra mas",
+      "sinopsis": "hola buenas",
+      "release": "2023-06-29T22:00:00.000Z",
+      "numPages": 50,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 50.7,
+      "authorId": 0
+    },
+    {
+      "id": 12,
+      "title": "Hola askkssa",
+      "sinopsis": "fffknqeofnqe32r23r2r r23r2 ",
+      "release": "2023-06-05T22:00:00.000Z",
+      "numPages": 102,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 6,
+      "authorId": 0
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "fullName": "Barclay Stickings",
+      "bio": "potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Belgorod",
+      "photo": "http://dummyimage.com/132x100.png/5fa2dd/ffffff"
+    },
+    {
+      "id": 2,
+      "fullName": "Consolata Heijnen",
+      "bio": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Buenavista",
+      "photo": "http://dummyimage.com/164x100.png/dddddd/000000"
+    },
+    {
+      "id": 3,
+      "fullName": "Efren Bellie",
+      "bio": "in tempus sit amet sem fusce consequat nulla nisl nunc nisl",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Turi",
+      "photo": "http://dummyimage.com/238x100.png/5fa2dd/ffffff"
+    },
+    {
+      "id": 4,
+      "fullName": "Francine Recke",
+      "bio": "iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Afareaitu",
+      "photo": "http://dummyimage.com/147x100.png/dddddd/000000"
+    },
+    {
+      "id": 5,
+      "fullName": "Thatch Yeldon",
+      "bio": "non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Kolindrós",
+      "photo": "http://dummyimage.com/112x100.png/cc0000/ffffff"
+    },
+    {
+      "id": 6,
+      "fullName": "Dinah Jee",
+      "bio": "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Patquía",
+      "photo": "http://dummyimage.com/140x100.png/5fa2dd/ffffff"
+    },
+    {
+      "id": 7,
+      "fullName": "Teena Nanson",
+      "bio": "justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Sanxi",
+      "photo": "http://dummyimage.com/140x100.png/cc0000/ffffff"
+    },
+    {
+      "id": 8,
+      "fullName": "Stewart Dallon",
+      "bio": "quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Yangkang",
+      "photo": "http://dummyimage.com/176x100.png/5fa2dd/ffffff"
+    },
+    {
+      "id": 9,
+      "fullName": "Lavinia Noel",
+      "bio": "ut erat curabitur gravida nisi at nibh in hac habitasse platea",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Oebai",
+      "photo": "http://dummyimage.com/153x100.png/cc0000/ffffff"
+    },
+    {
+      "id": 10,
+      "fullName": "Erny Knellen",
+      "bio": "pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Herrera",
+      "photo": "http://dummyimage.com/224x100.png/cc0000/ffffff"
+    },
+    {
+      "fullName": "Autor desde postman",
+      "bio": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Buenavista",
+      "photo": "http://dummyimage.com/164x100.png/dddddd/000000",
+      "id": 11
+    },
+    {
+      "fullName": "Autor desde postman",
+      "bio": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus",
+      "birthday": "2023-04-29T22:00:00.000Z",
+      "city": "Buenavista",
+      "photo": "http://dummyimage.com/164x100.png/dddddd/000000",
+      "id": 12
+    }
+  ]
+}

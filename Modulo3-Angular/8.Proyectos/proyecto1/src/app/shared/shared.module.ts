@@ -10,6 +10,9 @@ import { LimitLongTextPipe } from './limit-long-text.pipe';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    LimitLongTextPipe
   ]
 })
 export class SharedModule { }
