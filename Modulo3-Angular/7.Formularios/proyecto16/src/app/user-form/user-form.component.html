@@ -47,7 +47,48 @@
         </mat-error>
       </mat-form-field>
       
+      <mat-form-field floatLabel="always">
+        <mat-label>Salario</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="salary">
+        <span matTextPrefix>&euro;&nbsp;</span>
+        <span matTextSuffix>.00</span>
+        <mat-error *ngIf="userForm.get('salary')?.invalid &&
+            userForm.get('salary')?.touched">
+            El salario debe estar comprendido en un rango de 16500 y 100000 €.
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+      <mat-label>Hobbies o intereses</mat-label>
+      <mat-select formControlName="hobbies" multiple>
+        <mat-select-trigger>
+          {{userForm.get('hobbies')?.value?.[0] || ''}}
+          <span *ngIf="(userForm.get('hobbies')?.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(userForm.get('hobbies')?.value?.length || 0) - 1}} {{userForm.get('hobbies')?.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let hobbie of hobbies" [value]="hobbie">{{hobbie}}</mat-option>
+      </mat-select>
+      <mat-hint>Puedes seleccionar más de uno.</mat-hint>
+    </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>¿En qué empresa trabajas?</mat-label>
+        <mat-select formControlName="company" name="company">
+          <mat-option>Ninguna</mat-option>
+          <mat-option *ngFor="let company of companies" [value]="company.id">
+            {{company.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.get('company')?.invalid && userForm.get('company')?.touched">
+          Es obligatorio seleccionar una empresa.
+        </mat-error>
+      </mat-form-field>
+
+      
+      
       <mat-checkbox formControlName="isStudent">Es estudiante?</mat-checkbox>
+      
       <mat-checkbox formControlName="acceptConditions">He leido y acepto las condiciones, cedo mi alma. </mat-checkbox>
       <mat-error *ngIf="userForm.get('acceptConditions')?.invalid && userForm.get('email')?.touched">
 
