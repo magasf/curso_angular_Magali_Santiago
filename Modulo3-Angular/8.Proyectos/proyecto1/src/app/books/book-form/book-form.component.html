@@ -47,6 +47,19 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+    <mat-form-field>
+      <mat-label>Selecciona el autor/a del libro</mat-label>
+      <mat-select formControlName="authorId" name="authorId">
+        <mat-option>Ninguna</mat-option>
+        <mat-option *ngFor="let author of authors" [value]="author.id">
+          {{author.fullName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="bookForm.get('authorId')?.invalid && bookForm.get('authorId')?.touched">
+        Es obligatorio seleccionar una autor.
+      </mat-error>
+    </mat-form-field>
+
   <button mat-fab extended type="submit"
         [disabled]="bookForm.invalid">
     <mat-icon>send</mat-icon>

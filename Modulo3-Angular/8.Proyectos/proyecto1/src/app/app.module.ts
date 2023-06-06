@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BooksModule } from './books/books.module';
 import { AuthorsModule } from './authors/authors.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthorsModule } from './authors/authors.module';
     MatToolbarModule,
     MatGridListModule,
     BooksModule,
-    AuthorsModule
+    AuthorsModule,
+    CategoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

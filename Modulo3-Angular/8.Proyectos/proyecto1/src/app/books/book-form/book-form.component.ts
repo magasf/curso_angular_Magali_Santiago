@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBook } from '../models/book.model';
 import { BookService } from '../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorService } from 'src/app/authors/services/author.service';
+import { IAuthor } from 'src/app/authors/models/author.model';
 
 @Component({
   selector: 'app-book-form',
@@ -26,12 +28,16 @@ export class BookFormComponent implements OnInit {
       Validators.required, Validators.min(5), Validators.max(500), Validators.pattern("^[0-9]+([.,][0-9]{1,2})?$")
     ]),
     release: new FormControl(new Date()),
+    authorId: new FormControl(0, [Validators.required])
     // photo: new FormControl(''),
-    // authorId: new FormControl(null, [Validators.required])
 
   });
+  authors: IAuthor[] = [];
 
-  constructor(private bookService: BookService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private bookService: BookService, 
+              private router: Router, 
+              private activatedRoute: ActivatedRoute,
+              private authorService: AuthorService) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -40,7 +46,9 @@ export class BookFormComponent implements OnInit {
 
       const id = parseInt(idString, 10);
       this.bookService.findById(id).subscribe(book => this.loadBookForm(book));
+    
     });
+    this.authorService.findAll().subscribe(data => this.authors = data);
   }
 
   loadBookForm(book: IBook): void {
@@ -51,7 +59,8 @@ export class BookFormComponent implements OnInit {
       sinopsis: book.sinopsis,
       numPages: book.numPages,
       price: book.price,
-      release: book.release
+      release: book.release,
+      authorId: book.authorId
     });
   }
 
@@ -64,7 +73,7 @@ export class BookFormComponent implements OnInit {
     let price = this.bookForm.get('price')?.value ?? 5;
     let release = this.bookForm.get('release')?.value ?? new Date();
     let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff";
-
+    let authorId = this.bookForm.get('authorId')?.value ?? 0;
     // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
 
     let book: IBook = {
@@ -75,7 +84,7 @@ export class BookFormComponent implements OnInit {
       numPages: numPages,
       photo: photo,
       price: price,
-      authorId: 0
+      authorId: authorId
     }
     
     if(id === 0)// crear un nuevo libro
