@@ -1,56 +1,56 @@
 <mat-grid-list cols="3" rowHeight="200px" *ngIf="book">
-    <mat-grid-tile rowspan="2">
-      <div>
-        <h2>Portada</h2>
-        <img src="{{ book.photo }}" style="max-width: 150px" />
-        <mat-list *ngIf="author">
-          <mat-list-item>
-            <img matListItemAvatar src="{{author.photo}}" alt="{{author.fullName}}">
-            <div matListItemTitle>
-              
-              <a [routerLink] ="['/authors', author.id]">
-                {{author.fullName}}
-              </a>
-            </div>
-          </mat-list-item>
-        </mat-list>
-      </div>
-    </mat-grid-tile>
-  
-    <mat-grid-tile rowspan="2">
-      <div>
-        <h2>Libro {{ book.title }}</h2>
-        <p>Fecha lanzamiento: {{ book.release | date : "dd/MM/YYYY" }}</p>
-        <p>Número páginas: {{ book.numPages }}</p>
-  
-        <h2>Sinopsis</h2>
-        <p>{{ book.sinopsis }}</p>
-      </div>
-    </mat-grid-tile>
-  
-    <mat-grid-tile rowspan="2">
-      <div>
-        <h2>Precio: {{ book.price }} €</h2>
-        <p>Envío gratuito</p>
-  
-        <!--<button mat-fab extended color="primary">
-          <mat-icon>shopping_cart</mat-icon>
-          Comprar
-        </button> -->
-        <button mat-raised-button color="primary" style="width: 100%;">
-          <mat-icon>shopping_cart</mat-icon>
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Portada</h2>
+      <img src="{{ book.photo }}" style="max-width: 150px;" />
+
+      <mat-list *ngIf="author">
+        <mat-list-item>
+          <img matListItemAvatar src="{{author.photo}}" alt="{{author.fullName}}">
+          <div matListItemTitle>
+            <a [routerLink]="['/authors', author.id]">
+              {{author.fullName}}
+            </a>
+          </div>
+        </mat-list-item>
+      </mat-list>
+
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Libro {{ book.title }}</h2>
+      <p>Fecha lanzamiento: {{ book.release | date : "dd/MM/YYYY" }}</p>
+      <p>Número páginas: {{ book.numPages }}</p>
+
+      <h2>Sinopsis</h2>
+      <p>{{ book.sinopsis }}</p>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Precio: {{ book.price }} €</h2>
+      <p>Envío gratuito</p>
+
+      <!--<button mat-fab extended color="primary">
+        <mat-icon>shopping_cart</mat-icon>
         Comprar
-        </button>
-      </div>
-    </mat-grid-tile>
-  
-    <mat-grid-tile colspan="3" rowspan="1">
-      <div>
-        <p>
-          Todos nuestros libros son escritos a mano hasta altas horas de la
-          madrugada.
-        </p>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-  
+      </button> -->
+      <button mat-raised-button color="primary" style="width: 100%;">
+        <mat-icon>shopping_cart</mat-icon>
+      Comprar
+      </button>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" rowspan="1">
+    <div>
+      <p>
+        Todos nuestros libros son escritos a mano hasta altas horas de la
+        madrugada.
+      </p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

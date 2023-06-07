@@ -5,18 +5,14 @@ import { BookService } from '../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
+import { CategoryService } from 'src/app/categories/services/category.service';
+import { ICategory } from 'src/app/categories/models/category.model';
 
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.css']
 })
-/**
-
- 
- * 3- En save hacer la distincion de guardar o editar
- * 4- En loadForm hay que cargar el id
- */
 export class BookFormComponent implements OnInit {
 
   bookForm = new FormGroup({
@@ -28,16 +24,20 @@ export class BookFormComponent implements OnInit {
       Validators.required, Validators.min(5), Validators.max(500), Validators.pattern("^[0-9]+([.,][0-9]{1,2})?$")
     ]),
     release: new FormControl(new Date()),
-    authorId: new FormControl(0, [Validators.required])
-    // photo: new FormControl(''),
-
+    authorId: new FormControl(0, [Validators.required]),
+    categories: new FormControl<number[]>([])
   });
-  authors: IAuthor[] = [];
 
-  constructor(private bookService: BookService, 
-              private router: Router, 
-              private activatedRoute: ActivatedRoute,
-              private authorService: AuthorService) {}
+  authors: IAuthor[] = [];
+  categories: ICategory[] = [];
+
+  constructor(
+    private bookService: BookService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private authorService: AuthorService,
+    private categoryService: CategoryService
+    ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -46,9 +46,10 @@ export class BookFormComponent implements OnInit {
 
       const id = parseInt(idString, 10);
       this.bookService.findById(id).subscribe(book => this.loadBookForm(book));
-    
     });
+
     this.authorService.findAll().subscribe(data => this.authors = data);
+    this.categoryService.findAll().subscribe(data => this.categories = data);
   }
 
   loadBookForm(book: IBook): void {
@@ -60,12 +61,12 @@ export class BookFormComponent implements OnInit {
       numPages: book.numPages,
       price: book.price,
       release: book.release,
-      authorId: book.authorId
+      authorId: book.authorId,
+      categories: book.categories
     });
   }
 
   save(): void {
-
     let id = this.bookForm.get('id')?.value ?? 0;
     let title = this.bookForm.get('title')?.value ?? '';
     let sinopsis = this.bookForm.get('sinopsis')?.value ?? '';
@@ -74,8 +75,9 @@ export class BookFormComponent implements OnInit {
     let release = this.bookForm.get('release')?.value ?? new Date();
     let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff";
     let authorId = this.bookForm.get('authorId')?.value ?? 0;
-    // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
+    let categories = this.bookForm.get('categories')?.value ?? [];
 
+    // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
     let book: IBook = {
       id: id,
       title: title,
@@ -84,12 +86,13 @@ export class BookFormComponent implements OnInit {
       numPages: numPages,
       photo: photo,
       price: price,
-      authorId: authorId
+      authorId: authorId,
+      categories: categories
     }
-    
-    if(id === 0)// crear un nuevo libro
+
+    if (id === 0) // crear nuevo libro
       this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
-    else  // editar libro existente
+    else // editar libro existente
       this.bookService.update(book).subscribe(book => this.router.navigate(['/books', book.id]));
   }
 

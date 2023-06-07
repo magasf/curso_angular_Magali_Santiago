@@ -8,7 +8,11 @@
       "numPages": 408,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 37.36,
-      "authorId": 0
+      "authorId": 1,
+      "categories": [
+        1,
+        2
+      ]
     },
     {
       "id": 2,
@@ -18,17 +22,22 @@
       "numPages": 498,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 72.31,
-      "authorId": 0
+      "authorId": 1,
+      "categories": []
     },
     {
       "id": 3,
-      "title": "Eddie and the Cruisers II: Eddie Lives!",
+      "title": "Eddie and the Cruisers II: Eddie Lives! edit",
       "sinopsis": "aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede",
       "release": "2023-04-29T22:00:00.000Z",
       "numPages": 323,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 28.62,
-      "authorId": 4
+      "authorId": 4,
+      "categories": [
+        3,
+        4
+      ]
     },
     {
       "id": 4,
@@ -38,7 +47,11 @@
       "numPages": 423,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 50.44,
-      "authorId": 3
+      "authorId": 3,
+      "categories": [
+        4,
+        5
+      ]
     },
     {
       "id": 5,
@@ -48,7 +61,12 @@
       "numPages": 442,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 57.52,
-      "authorId": 10
+      "authorId": 10,
+      "categories": [
+        1,
+        2,
+        3
+      ]
     },
     {
       "id": 6,
@@ -58,7 +76,10 @@
       "numPages": 785,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 11.48,
-      "authorId": 5
+      "authorId": 5,
+      "categories": [
+        1
+      ]
     },
     {
       "id": 7,
@@ -68,7 +89,11 @@
       "numPages": 184,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 7.21,
-      "authorId": 9
+      "authorId": 9,
+      "categories": [
+        3,
+        4
+      ]
     },
     {
       "id": 8,
@@ -88,7 +113,12 @@
       "numPages": 286,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 99.73,
-      "authorId": 5
+      "authorId": 5,
+      "categories": [
+        1,
+        2,
+        3
+      ]
     },
     {
       "id": 10,
@@ -98,27 +128,28 @@
       "numPages": 144,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 26.4,
-      "authorId": 10
+      "authorId": 10,
+      "categories": [
+        1,
+        2,
+        4,
+        5
+      ]
     },
     {
       "id": 11,
-      "title": "prueba otra mas",
-      "sinopsis": "hola buenas",
-      "release": "2023-06-29T22:00:00.000Z",
+      "title": "nuevo libro prueba",
+      "sinopsis": "ffsfsdf",
+      "release": "2023-06-06T12:09:30.930Z",
       "numPages": 50,
-      "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
-      "price": 50.7,
-      "authorId": 0
-    },
-    {
-      "id": 12,
-      "title": "Nuevo libro alan editado",
-      "sinopsis": "ejemplo",
-      "release": "2023-06-05T11:58:03.195Z",
-      "numPages": 40,
-      "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
-      "price": 40,
-      "authorId": 0
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 50,
+      "authorId": 1,
+      "categories": [
+        2,
+        3,
+        4
+      ]
     }
   ],
   "authors": [
@@ -217,6 +248,43 @@
       "city": "Buenavista",
       "photo": "https://xsgames.co/randomusers/avatar.php?g=female",
       "id": 12
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Estilo de vida",
+      "minAge": 13,
+      "color": "blue",
+      "photo": "https://picsum.photos/100"
+    },
+    {
+      "id": 2,
+      "name": "Alimentación",
+      "minAge": 13,
+      "color": "yellow",
+      "photo": "https://picsum.photos/200"
+    },
+    {
+      "id": 3,
+      "name": "Deportes",
+      "minAge": 13,
+      "color": "blue",
+      "photo": "https://picsum.photos/200"
+    },
+    {
+      "id": 4,
+      "name": "No Ficción",
+      "minAge": 13,
+      "color": "black",
+      "photo": "https://picsum.photos/200"
+    },
+    {
+      "id": 5,
+      "name": "Romance",
+      "minAge": 13,
+      "color": "red",
+      "photo": "https://picsum.photos/200"
     }
   ]
 }

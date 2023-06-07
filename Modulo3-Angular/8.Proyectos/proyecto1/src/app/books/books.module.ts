@@ -19,6 +19,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [
     BookListComponent,
@@ -41,7 +42,8 @@ import {MatListModule} from '@angular/material/list';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule
     
   ],
   providers: [

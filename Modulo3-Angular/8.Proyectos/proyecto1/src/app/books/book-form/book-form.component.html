@@ -1,12 +1,11 @@
 
-
 <h2 *ngIf="bookForm.get('id')?.value === 0">Creación de libro</h2>
-<h2 *ngIf="!(bookForm.get('id')?.value === 0)">Editando libro {{bookForm.get('id')?.value}} </h2>
+<h2 *ngIf="!(bookForm.get('id')?.value === 0)">Editando libro {{bookForm.get('id')?.value}}</h2>
+
 <form [formGroup]="bookForm" (ngSubmit)="save()">
 
-  
-    <input type="hidden" formControlName="id">
-  
+  <input type="hidden" formControlName="id">
+
   <mat-form-field>
     <mat-label>Título</mat-label>
     <input matInput type="text" formControlName="title">
@@ -56,8 +55,16 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="bookForm.get('authorId')?.invalid && bookForm.get('authorId')?.touched">
-        Es obligatorio seleccionar una autor.
+        Es obligatorio seleccionar un autor.
       </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Géneros o categorías</mat-label>
+      <mat-select formControlName="categories" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+      </mat-select>
+      <mat-hint>Puedes seleccionar más de una categoría.</mat-hint>
     </mat-form-field>
 
   <button mat-fab extended type="submit"

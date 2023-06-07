@@ -1,10 +1,19 @@
-
-<h2>Listado de libros</h2>
-
 <button mat-raised-button color="primary" routerLink="/books/new">
   <mat-icon>add</mat-icon>
 Crear libro
 </button>
+
+<mat-chip-listbox aria-label="Dog selection">
+
+  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
+    <mat-chip color="primary">
+      <img matChipAvatar [src]="author.photo" [alt]="author.fullName"/>
+      {{author.fullName}}
+    </mat-chip>
+
+  </a>
+
+</mat-chip-listbox>
 
 <table mat-table [dataSource]="books" class="mat-elevation-z8">
 
