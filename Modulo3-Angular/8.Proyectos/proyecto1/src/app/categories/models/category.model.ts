@@ -3,4 +3,6 @@ export interface ICategory {
     name: string;
     minAge: number;
     color: string;
-}
+    photo: string;
+  }
+  

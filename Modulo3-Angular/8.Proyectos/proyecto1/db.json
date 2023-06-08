@@ -135,21 +135,6 @@
         4,
         5
       ]
-    },
-    {
-      "id": 11,
-      "title": "nuevo libro prueba",
-      "sinopsis": "ffsfsdf",
-      "release": "2023-06-06T12:09:30.930Z",
-      "numPages": 50,
-      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
-      "price": 50,
-      "authorId": 1,
-      "categories": [
-        2,
-        3,
-        4
-      ]
     }
   ],
   "authors": [

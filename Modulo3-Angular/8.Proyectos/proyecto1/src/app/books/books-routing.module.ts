@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookDetailComponent } from './book-detail/book-detail.component';
-import { BookFormComponent } from './book-form/book-form.component';
-import { BookGalleryComponent } from './book-gallery/book-gallery.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { BookGalleryComponent } from './book-gallery/book-gallery.component';
+import { BookFormComponent } from './book-form/book-form.component';
 
 const routes: Routes = [
   {
@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: ':id/edit',
     component: BookFormComponent
+  },
+  {
+    path: 'author/:authorId',
+    component: BookListComponent
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'
