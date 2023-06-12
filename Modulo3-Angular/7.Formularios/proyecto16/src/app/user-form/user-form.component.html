@@ -1,64 +1,82 @@
 
 <form [formGroup]="userForm" (ngSubmit)="save()">
 
-    <mat-form-field>
-      <mat-label>Nombre completo</mat-label>
-      <input matInput type="text" formControlName="fullName">
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nombre completo</mat-label>
+    <input matInput type="text" formControlName="fullName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Biografía o descripción</mat-label>
+    <textarea matInput #message maxlength="256" rows="4"
+        placeholder="Ex. I need help with..." formControlName="bio">
+    </textarea>
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Biografia o descripcion</mat-label>
-        <textarea matInput #message maxlength="256" placeholder="Ex. I need help with.." formControlName="bio"></textarea>
-        <mat-hint align="start"><strong>Don't disclose personal info</strong></mat-hint>
-        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email"
-               placeholder="Ex. pat@example.com">
-        <mat-hint>Te enviaremos un correo para la verificacion.</mat-hint>
-        <mat-error *ngIf="userForm.get('email')?.invalid &&
-                          userForm.get('email')?.touched &&
-                          userForm.get('email')?.getError('required')">
-          Email obligatorio.
-        </mat-error>
-        <mat-error *ngIf="userForm.get('email')?.invalid &&
-                          userForm.get('email')?.touched &&
-                          userForm.get('email')?.getError('email')">
-         Formato email incorrecto.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-        <button mat-icon-button matSuffix (click)="hide = !hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="userForm.get('password')?.invalid &&
-                          userForm.get('password')?.touched &&
-                          userForm.get('password')?.getError('required')">
-          Contraseña obligatoria.
-        </mat-error>
-        <mat-error *ngIf="userForm.get('password')?.invalid &&
-                          userForm.get('password')?.touched &&
-                          userForm.get('password')?.getError('pattern')">
-         Contraseña debe ser entre 8 y 20 caracteres, utilizando letras, numeros.
-        </mat-error>
-      </mat-form-field>
-      
-      <mat-form-field floatLabel="always">
-        <mat-label>Salario</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="salary">
-        <span matTextPrefix>&euro;&nbsp;</span>
-        <span matTextSuffix>.00</span>
-        <mat-error *ngIf="userForm.get('salary')?.invalid &&
-            userForm.get('salary')?.touched">
-            El salario debe estar comprendido en un rango de 16500 y 100000 €.
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email"
+             placeholder="Ex. pat@example.com">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-hint>Te enviaremos un correo para la verificación.</mat-hint>
+      <mat-error *ngIf="userForm.get('email')?.invalid &&
+                        userForm.get('email')?.touched &&
+                        userForm.get('email')?.getError('required')">
+        Email obligatorio.
       </mat-error>
-      </mat-form-field>
+      <mat-error *ngIf="userForm.get('email')?.invalid &&
+                        userForm.get('email')?.touched &&
+                        userForm.get('email')?.getError('email')">
+      Formato email incorrecto.
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="userForm.get('password')?.invalid &&
+            userForm.get('password')?.touched &&
+            userForm.get('password')?.getError('required')">
+      Contraseña obligatoria.
+      </mat-error>
+      <mat-error *ngIf="userForm.get('password')?.invalid &&
+            userForm.get('password')?.touched &&
+            userForm.get('password')?.getError('pattern')">
+      Contraseña debe ser entre 8 y 20 caracteres utilizando letras, números.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Salario</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" formControlName="salary">
+      <span matTextPrefix>&euro;&nbsp;</span>
+      <span matTextSuffix>.00</span>
+      <mat-error *ngIf="userForm.get('salary')?.invalid &&
+          userForm.get('salary')?.touched">
+          El salario debe estar comprendido en un rango de 16500 y 100000 €.
+    </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>¿En qué empresa trabajas?</mat-label>
+      <mat-select formControlName="company" name="company">
+        <mat-option>Ninguna</mat-option>
+        <mat-option *ngFor="let company of companies" [value]="company.id">
+          {{company.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="userForm.get('company')?.invalid && userForm.get('company')?.touched">
+        Es obligatorio seleccionar una empresa.
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
       <mat-label>Hobbies o intereses</mat-label>
       <mat-select formControlName="hobbies" multiple>
         <mat-select-trigger>
@@ -72,31 +90,72 @@
       <mat-hint>Puedes seleccionar más de uno.</mat-hint>
     </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>¿En qué empresa trabajas?</mat-label>
-        <mat-select formControlName="company" name="company">
-          <mat-option>Ninguna</mat-option>
-          <mat-option *ngFor="let company of companies" [value]="company.id">
-            {{company.name}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="userForm.get('company')?.invalid && userForm.get('company')?.touched">
-          Es obligatorio seleccionar una empresa.
-        </mat-error>
-      </mat-form-field>
 
-      
-      
-      <mat-checkbox formControlName="isStudent">Es estudiante?</mat-checkbox>
-      
-      <mat-checkbox formControlName="acceptConditions">He leido y acepto las condiciones, cedo mi alma. </mat-checkbox>
-      <mat-error *ngIf="userForm.get('acceptConditions')?.invalid && userForm.get('email')?.touched">
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput type="text" placeholder="Ex. San Francisco" formControlName="city">
+          </mat-form-field>
+        </td>
 
-      </mat-error>
-    <button mat-fab extended type="submit" [disabled]="userForm.invalid">
-       <mat-icon>send</mat-icon>
-        Enviar
-    </button>
-  
-  </form>
-  
+        <td>
+          <mat-form-field>
+            <mat-label>Postal Code</mat-label>
+            <input matInput type="number" min="00000" max="99999" placeholder="Ex. 94105" formControlName="postalCode">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+
+    <mat-form-field>
+      <mat-label>Fecha nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthday" [min]="minBirthday" [max]="maxBirthday">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Periodo de actividad</mat-label>
+      <mat-date-range-input [rangePicker]="pickerRange">
+        <input matStartDate placeholder="Start date" formControlName="jobStartDate">
+        <input matEndDate placeholder="End date" formControlName="jobEndDate">
+      </mat-date-range-input>
+      <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="pickerRange">
+        <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-date-range-picker #pickerRange></mat-date-range-picker>
+    </mat-form-field>
+
+
+    <div>
+      <div><label>¿En qué departamento trabajas?</label></div>
+      <mat-radio-group formControlName="department">
+        <mat-radio-button value="development">Desarrollo</mat-radio-button>
+        <mat-radio-button value="marketing">Marketing</mat-radio-button>
+        <mat-radio-button value="blockchain">Blockchain</mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="userForm.get('department')?.invalid &&
+          userForm.get('department')?.touched">
+          Es obligatorio seleccionar un departamento.
+    </mat-error>
+    </div>
+
+    <mat-checkbox formControlName="isStudent">¿Es estudiante?</mat-checkbox>
+
+    <mat-checkbox formControlName="acceptConditions">He leído y acepto los términos y condiciones, cedo mi alma.</mat-checkbox>
+    <mat-error *ngIf="userForm.get('acceptConditions')?.invalid && userForm.get('acceptConditions')?.touched">
+      Es obligatorio que nos vendas tu alma.
+    </mat-error>
+
+  <button mat-fab extended type="submit"
+        [disabled]="userForm.invalid">
+    <mat-icon>send</mat-icon>
+      Enviar
+  </button>
+</form>

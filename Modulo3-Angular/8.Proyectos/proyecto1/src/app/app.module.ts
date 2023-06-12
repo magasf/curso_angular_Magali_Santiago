@@ -33,6 +33,7 @@ import { CategoriesModule } from './categories/categories.module';
     BooksModule,
     AuthorsModule,
     CategoriesModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
