@@ -5,6 +5,8 @@ import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoryService } from 'src/app/categories/services/category.service';
+import { ICategory } from 'src/app/categories/models/category.model';
 
 @Component({
   selector: 'app-book-list',
@@ -22,10 +24,12 @@ export class BookListComponent implements OnInit {
   ];
   books: IBook[] = [];
   authors: IAuthor[] = [];
+  categories: ICategory[] = [];
 
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
+    private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
     private snackbar: MatSnackBar
   ) {}
@@ -36,18 +40,26 @@ export class BookListComponent implements OnInit {
 
   loadBooks() {
     this.activatedRoute.params.subscribe((params) => {
-      const idString = params['authorId'];
-      if (idString) {
-        const id = parseInt(idString, 10);
-        this.bookService
-          .findAllByAuthorId(id)
-          .subscribe((data) => (this.books = data));
+      const authorIdStr = params['authorId'];
+      const categoryIdStr = params['categoryId'];
+
+      if (authorIdStr) {
+        const id = parseInt(authorIdStr, 10);
+        this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data);
+
+      } else if(categoryIdStr) {
+        const id = parseInt(categoryIdStr, 10);
+        this.bookService.findAllByCategoryId(id).subscribe(data => this.books = data);
+
       } else {
-        this.bookService.findAll().subscribe((data) => (this.books = data));
+        this.bookService.findAll().subscribe(data => this.books = data);
       }
+
     });
-    this.authorService.findAll().subscribe((data) => (this.authors = data));
+    this.authorService.findAll().subscribe(data => this.authors = data);
+    this.categoryService.findAll().subscribe(data => this.categories = data);
   }
+  
   deleteBook(book: IBook) {
     this.bookService.deleteById(book.id).subscribe({
       next: response => {
@@ -56,15 +68,13 @@ export class BookListComponent implements OnInit {
           this.loadBooks();
         } else {
           console.log('Se ha producido un error');
-          this.snackbar.open('Se ha producido un error, intentalo mas tarde.', 'Cerrar',{duration: 3000});
+          this.snackbar.open('Se ha producido un error, inténtalo más tarde.', 'Cerrar', {duration: 3000});
         }
       },
       error: error => {
         console.log(error);
-        this.snackbar.open('Se ha producido un error, intentalo mas tarde.', 'Cerrar',{duration: 3000});
-
+        this.snackbar.open('Se ha producido un error, inténtalo más tarde.', 'Cerrar', {duration: 3000});
       },
-      
     });
   }
 }
