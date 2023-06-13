@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IAuthor } from '../models/author.model';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +10,7 @@ export class AuthorService {
   url: string = "http://localhost:3000/authors";
 
   constructor(private httpClient: HttpClient) { }
+
   findAll(): Observable<IAuthor[]> {
     return this.httpClient.get<IAuthor[]>(this.url);
   }

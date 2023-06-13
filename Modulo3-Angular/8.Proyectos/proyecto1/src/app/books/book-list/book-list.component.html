@@ -6,33 +6,58 @@
 Crear libro
 </button>
 
-<mat-chip-listbox>
-
-  <a *ngFor="let category of categories" [routerLink]="['/books/category', category.id]">
-    <!-- <mat-chip-option [ngStyle]="{'background-color': category.color}"> -->
-    <mat-chip-option>
-      <img matChipAvatar [src]="category.photo" [alt]="category.name"/>
-      {{category.name}}
-    </mat-chip-option>
-  </a>
-
-</mat-chip-listbox>
-
-
-<mat-chip-listbox>
-
-  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
-    <mat-chip-option color="primary">
-      <img matChipAvatar [src]="author.photo" [alt]="author.fullName"/>
-      {{author.fullName}}
-    </mat-chip-option>
-  </a>
-
-</mat-chip-listbox>
-
-<div *ngIf="books.length > 0">
-Hay {{books.length}} libros en total.
+<div *ngIf="author" class="list-header">
+  <img class="list-header-img" [src]="author.photo" [alt]="author.fullName">
+  <h2>Autor {{author.fullName}}</h2>
 </div>
+
+<div *ngIf="category" class="list-header">
+  <img class="list-header-img" [src]="category.photo" [alt]="category.name">
+  <h2>Categoría {{category.name}}</h2>
+</div>
+
+<div class="table-count" *ngIf="books.length > 0">
+  Hay {{books.length}} libros en total.
+  </div>
+
+<mat-accordion>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filtrar por categoría
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <mat-chip-listbox>
+        <a *ngFor="let category of categories" [routerLink]="['/books/category', category.id]">
+          <!-- <mat-chip-option [ngStyle]="{'background-color': category.color}"> -->
+          <mat-chip-option>
+            <img matChipAvatar [src]="category.photo" [alt]="category.name"/>
+            {{category.name}}
+          </mat-chip-option>
+        </a>
+      </mat-chip-listbox>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filtrar por autor
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-chip-listbox>
+
+      <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
+        <mat-chip-option color="primary">
+          <img matChipAvatar [src]="author.photo" [alt]="author.fullName"/>
+          {{author.fullName}}
+        </mat-chip-option>
+      </a>
+
+    </mat-chip-listbox>
+  </mat-expansion-panel>
+</mat-accordion>
+
 
 <table mat-table [dataSource]="books" class="mat-elevation-z8">
 

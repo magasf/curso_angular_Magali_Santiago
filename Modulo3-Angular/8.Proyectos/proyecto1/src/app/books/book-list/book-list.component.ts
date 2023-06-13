@@ -25,7 +25,8 @@ export class BookListComponent implements OnInit {
   books: IBook[] = [];
   authors: IAuthor[] = [];
   categories: ICategory[] = [];
-
+  author: IAuthor | undefined;
+  category: ICategory | undefined;
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
@@ -43,15 +44,17 @@ export class BookListComponent implements OnInit {
       const authorIdStr = params['authorId'];
       const categoryIdStr = params['categoryId'];
 
-      if (authorIdStr) {
+      if (authorIdStr) { // Filtro por autores
         const id = parseInt(authorIdStr, 10);
         this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data);
+        this.authorService.findById(id).subscribe(data => this.author = data);
 
-      } else if(categoryIdStr) {
+      } else if (categoryIdStr) { // Filtro por category
         const id = parseInt(categoryIdStr, 10);
         this.bookService.findAllByCategoryId(id).subscribe(data => this.books = data);
+        this.categoryService.findById(id).subscribe(data => this.category = data);
 
-      } else {
+      } else { // Sin filtro
         this.bookService.findAll().subscribe(data => this.books = data);
       }
 
@@ -59,7 +62,7 @@ export class BookListComponent implements OnInit {
     this.authorService.findAll().subscribe(data => this.authors = data);
     this.categoryService.findAll().subscribe(data => this.categories = data);
   }
-  
+
   deleteBook(book: IBook) {
     this.bookService.deleteById(book.id).subscribe({
       next: response => {

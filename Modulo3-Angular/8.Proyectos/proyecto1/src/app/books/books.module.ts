@@ -17,39 +17,39 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
-import {MatListModule} from '@angular/material/list';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule }from '@angular/material/expansion';
 @NgModule({
-  declarations: [
-    BookListComponent,
-    BookGalleryComponent,
-    BookDetailComponent,
-    BookFormComponent
-  ],
-  imports: [
-    CommonModule,
-    BooksRoutingModule,
-    HttpClientModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    SharedModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatListModule,
-    MatChipsModule,
-    MatSnackBarModule
-    
-  ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
-  ],
+    declarations: [
+        BookListComponent,
+        BookGalleryComponent,
+        BookDetailComponent,
+        BookFormComponent
+    ],
+    imports: [
+        CommonModule, BooksRoutingModule, HttpClientModule,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        SharedModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatListModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        MatExpansionModule
+    ],
+    providers: [
+      { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    ],
 })
 export class BooksModule { }
+

@@ -16,15 +16,15 @@ import { ICategory } from 'src/app/categories/models/category.model';
 export class BookFormComponent implements OnInit {
 
   bookForm = new FormGroup({
-    id: new FormControl(0),
-    title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
-    sinopsis: new FormControl('', [Validators.maxLength(1000)]),
-    numPages: new FormControl(0, [Validators.min(30)]),
-    price: new FormControl(0, [
+    id: new FormControl<number>(0),
+    title: new FormControl<string>('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
+    sinopsis: new FormControl<string>('', [Validators.maxLength(1000)]),
+    numPages: new FormControl<number>(0, [Validators.min(30)]),
+    price: new FormControl<number>(0, [
       Validators.required, Validators.min(5), Validators.max(500), Validators.pattern("^[0-9]+([.,][0-9]{1,2})?$")
     ]),
-    release: new FormControl(new Date()),
-    authorId: new FormControl(0, [Validators.required]),
+    release: new FormControl<Date>(new Date()),
+    authorId: new FormControl<number>(0, [Validators.required]),
     categories: new FormControl<number[]>([])
   });
 
@@ -40,6 +40,7 @@ export class BookFormComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    // /books/3/edit
     this.activatedRoute.params.subscribe(params => {
       const idString = params['id'];
       if (!idString) return;
