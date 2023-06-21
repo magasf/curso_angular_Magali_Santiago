@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from 'src/books/books.model';
+
 @Module({
-    
     imports: [
         TypeOrmModule.forRoot({
             type: 'mysql',
@@ -16,11 +16,13 @@ import { Book } from 'src/books/books.model';
                 // __dirname + 'src/**/*.model.ts'
                 Book
             ],
-            synchronize: true // generar tablas automáticamente en base a entidades
+            synchronize: true, // generar tablas automáticamente en base a entidades
+            logging: true
         })
     ]
 })
 export class DatabaseModule {}
+
 // CREAR VARIABLE DE ENTORNO EN MAC
 // Símbolo virgulilla en MAX: “option+Ñ”
 // nano ~/.zshrc
@@ -31,6 +33,5 @@ export class DatabaseModule {}
 // Powershell
 // setx NEST_PASSWORD "admin"
 // echo $env:NEST_PASSWORD
-
 
 
