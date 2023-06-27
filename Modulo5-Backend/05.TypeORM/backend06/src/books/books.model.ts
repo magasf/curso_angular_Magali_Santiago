@@ -1,7 +1,7 @@
-
-
 import { Author } from "src/authors/authors.model";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "src/categories/categories.model";
+import { Editorial } from "src/editorials/editorials.model";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -28,8 +28,18 @@ export class Book {
     @Column({type: 'boolean', default: false})
     published: boolean;
 
-    //Author many to one
-    @ManyToOne(()=> Author)
-    @JoinColumn({name: 'id_author'})
+    @ManyToOne(() => Author)
+    @JoinColumn({ name: 'id_author'})
     author: Author;
+
+    @ManyToOne(() => Editorial)
+    @JoinColumn({ name: 'id_editorial'})
+    editorial: Editorial;
+
+    @ManyToMany(() => Category, { cascade: true})
+    @JoinTable({name: 'book_category', 
+                joinColumn: {name: 'id_book'},
+                inverseJoinColumn: {name: 'id_category'}
+            })
+    categories: Category[];
 }
