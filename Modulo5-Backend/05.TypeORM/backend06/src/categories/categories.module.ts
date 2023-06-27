@@ -8,6 +8,7 @@ import { Category } from './categories.model';
 
   imports:[TypeOrmModule.forFeature([Category])],//Tabla Author 
   controllers: [CategoriesController],
-  providers: [CategoriesService]
+  providers: [CategoriesService],
+  exports: [CategoriesService]
 })
 export class CategoriesModule {}
