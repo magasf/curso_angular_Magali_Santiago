@@ -1,0 +1,13 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.logo{
+  max-width: 210px;
+  margin-top:10px;
+}
+
+.navbar{
+  background-color: #27282c;
+  color:white;
+}
+

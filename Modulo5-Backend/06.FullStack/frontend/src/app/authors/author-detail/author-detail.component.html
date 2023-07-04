@@ -1,0 +1,36 @@
+<mat-grid-list cols="3" rowHeight="200px" *ngIf="author">
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Autor {{ author.id }}</h2>
+      <img src="{{ author.photo }}" style="max-width: 150px;" />
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Autor {{ author.name }}</h2>
+      <p>Nacimiento: {{ author.birthday | date : "dd/MM/YYYY" }}</p>
+      <p *ngIf="author.location">Origen: {{ author.location.country }}</p>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="2">
+    <div>
+      <h2>Biografía</h2>
+      <p>{{ author.bio }}</p>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="3" rowspan="1" *ngIf="books.length > 0">
+    <mat-list>
+      <mat-list-item *ngFor="let book of books">
+        <img matListItemAvatar src="{{book.photo}}" alt="{{book.title}}">
+        <div matListItemTitle>
+          <a [routerLink]="['/books', book.id]">
+            {{book.title}}
+          </a>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+</mat-grid-list>

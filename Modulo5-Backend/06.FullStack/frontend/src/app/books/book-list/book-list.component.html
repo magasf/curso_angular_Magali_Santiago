@@ -1,0 +1,117 @@
+
+<h2>Listado de libros</h2>
+
+<button mat-raised-button color="primary" routerLink="/books/new">
+  <mat-icon>add</mat-icon>
+Crear libro
+</button>
+
+<div *ngIf="author" class="list-header">
+  <img class="list-header-img" [src]="author.photo" [alt]="author.name">
+  <h2>Autor {{author.name}}</h2>
+</div>
+
+<div *ngIf="category" class="list-header">
+  <img class="list-header-img" [src]="category.photo" [alt]="category.name">
+  <h2>Categoría {{category.name}}</h2>
+</div>
+
+<div class="table-count" *ngIf="books.length > 0">
+  Hay {{books.length}} libros en total.
+  </div>
+
+<mat-accordion>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filtrar por categoría
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <mat-chip-listbox>
+        <a *ngFor="let category of categories" [routerLink]="['/books/category', category.id]">
+          <!-- <mat-chip-option [ngStyle]="{'background-color': category.color}"> -->
+          <mat-chip-option>
+            <img matChipAvatar [src]="category.photo" [alt]="category.name"/>
+            {{category.name}}
+          </mat-chip-option>
+        </a>
+      </mat-chip-listbox>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filtrar por autor
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-chip-listbox>
+
+      <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
+        <mat-chip-option color="primary">
+          <img matChipAvatar [src]="author.photo" [alt]="author.name"/>
+          {{author.name}}
+        </mat-chip-option>
+      </a>
+
+    </mat-chip-listbox>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<table mat-table [dataSource]="books" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Título</th>
+    <td mat-cell *matCellDef="let book">{{ book.title | lowercase}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="sinopsis">
+    <th mat-header-cell *matHeaderCellDef>Sinopsis</th>
+    <td mat-cell *matCellDef="let book">{{ book.sinopsis | limitLongText:15}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="release">
+    <th mat-header-cell *matHeaderCellDef>Fecha lanzamiento</th>
+    <td mat-cell *matCellDef="let book">{{ book.release | date:'dd/MM/YYYY'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="numPages">
+    <th mat-header-cell *matHeaderCellDef>Número páginas</th>
+    <td mat-cell *matCellDef="let book">{{ book.numPages }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Precio</th>
+    <td mat-cell *matCellDef="let book" style="width: 80px;">{{ book.price | number:'1.2-2'}} €</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let book" style="width: 300px;">
+
+      <button mat-button color="primary" class="btn-primary" [routerLink]="['/books', book.id]">
+        <mat-icon>visibility</mat-icon>
+        Ver
+      </button>
+
+      <button mat-button color="primary" class="btn-primary" [routerLink]="['/books', book.id, 'edit']">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
+
+      <button mat-button color="primary" class="btn-primary" (click)="deleteBook(book)">
+        <mat-icon>delete</mat-icon>
+        Borrar
+      </button>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+<div *ngIf="books.length === 0" style="text-align: center; min-height: 100px;">
+  No se han encontrado libros.
+</div>
