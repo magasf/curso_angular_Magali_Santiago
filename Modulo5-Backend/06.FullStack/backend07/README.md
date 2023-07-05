@@ -1,73 +1,153 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Backend con NestJS + TypeORM
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Módulo Books:
+* nest generate module books
+* nest generate controller books
+* nest generate service books
+* Crear books.model.ts o books.entity.ts
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Módulo Database: 
+* nest generate module database
 
-## Installation
 
-```bash
-$ npm install
-```
+Módulo Authors:
+* nest generate module authors
+* nest generate controller authors
+* nest generate service authors
+* Crear authors.model.ts o authors.entity.ts
 
-## Running the app
+Módulo Editorial:
+* nest generate module editorials
+* nest generate controller editorials
+* nest generate service editorials
+* Crear editorials.model.ts o editorials.entity.ts
 
-```bash
-# development
-$ npm run start
+Módulo locations:
+* nest generate module locations
+* nest generate controller locations
+* nest generate service locations
+* Crear locations.model.ts o locations.entity.ts
 
-# watch mode
-$ npm run start:dev
+Módulo categories:
+* nest generate module categories
+* nest generate controller categories
+* nest generate service categories
+* Crear categories.model.ts o locations.entity.ts
 
-# production mode
-$ npm run start:prod
-```
+Módulo Users:
+* nest generate module users
+* nest generate controller users
+* nest generate service users
+* Modelo User y Rol
 
-## Test
+Módulo Reserva:
+* nest generate module bookings
+* nest generate controller bookings
+* nest generate service bookings
+* Modelo reserva
 
-```bash
-# unit tests
-$ npm run test
+Asociaciones:
+* ManyToOne Book - Author
+* ManyToOne Book - Editorial
+* OneToOne Author - Location
+* ManyToMany Book - Category
+* ManyToOne Reserva - User
+* ManyToOne Reserva - Book
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+# Autenticación
 
-## Support
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcrypt
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+nest generate module auth
 
-## Stay in touch
+nest generate service auth
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+nest generate controller auth
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+## Login (genera token): 
+
+1. AuthService
+    * login: si todo ok se firma con una clave secreta
+
+2. AuthModule:
+    * ajustar imports: UsersModule, PassportModule, JwtModule
+    * ajustar providers: AuthService, JwtStrategy
+
+3. AuthController:
+    * login que recibe un LoginDTO por @Body() por @Post
+
+4. Abrir Workbench y añadir un usuario en la tabla user si no lo hay.
+
+5. Abrir postman y enviar por POST a http://localhost:3000/auth/login
+
+{
+    "email": "user1@gmail.com",
+    "password": "1234"
+}
+
+Ejemplo de respuesta que tiene que devolver: 
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODg0NTczNzYsImV4cCI6MTY4OTA2MjE3Nn0.OulRne6T5V0cQTQhVKqrVEYjnY-ArgMnSSc71bvYp44"
+}
+
+Añadir el token en jwt.io y ver que descodifica la información que tiene dentro.
+
+## Verificar tokens en las sucesivas peticiones
+
+
+1. Crear archivo jwt.strategy.ts en el módulo auth
+
+2. Crear dentro la clase JwtStrategy
+    * extends PassportStrategy(Strategy) 
+    * constructor con llamada a super()
+    * método validate(payload)
+
+3. Añadir la clase JwtStrategy en providers del módulo auth
+
+4. AuthController crear métodos:
+    * hola1 sin seguridad
+    * hola2 con seguridad: @UseGuards(AuthGuard('jwt'))
+    * getProfile que extrae el user de la @Request
+    * A partir de ahora podemos extraer el user de la @Request
+
+
+Desde Postman:
+
+5. Enviar el token desde Postman en una petición a un controlador cualquiera como por ejemplo auth/hello2:
+
+Authorization > Bearer Token > Pegar el token
+
+Comprobar:
+
+* auth/hola1 es público y no tiene seguridad, no necesita token
+
+* auth/hola2 es seguro y necesita token
+
+* auth/profile es seguro y necesita token, devuelve el usuario, sin la contraseña.
+
+
+
+
+
+
+
+
+
+
+Comprobar tokens:
+
+1. JwtStrategy extends PassportStrategy
+    * utiliza la clave secreta para comprobar el token
+
+2. JwtAuthGuard extends AuthGuard
+
+3. @JwtAuthGuard en los métodos de los controladores
+    * Explorar activar seguridad global
+
+6. DTOs: Data Transfer Objects 
+

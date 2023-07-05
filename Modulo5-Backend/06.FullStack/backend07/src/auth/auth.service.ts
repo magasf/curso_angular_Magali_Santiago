@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { LoginDTO } from './dto/login.dto';
 import { TokenDTO } from './dto/token.dto';
+import { User } from 'src/users/users.model';
 
 
 
@@ -28,7 +29,8 @@ export class AuthService {
         
         let payload = {
             email: user.email,
-            sub: user.id
+            sub: user.id,
+            role: user.role
         }
 
         let token: TokenDTO = {
@@ -36,6 +38,18 @@ export class AuthService {
         }
 
         return token;
+
+        
+    }
+    async register(user: User){
+        await this.userService.create(user)
+
+        let loginDTO = {
+            email: user.email,
+            password: user.password
+        }
+        
+        return this.login(loginDTO)
 
     }
 }
