@@ -71,4 +71,3 @@ INSERT INTO `backend_nest`.`booking` (`price`, `startDate`, `finishDate`, `id_us
 INSERT INTO `backend_nest`.`booking` (`price`, `startDate`, `finishDate`, `id_user`, `id_book`) VALUES ('12.3', '2023-01-01', '2023-02-01', '2', '1');
 
 
-

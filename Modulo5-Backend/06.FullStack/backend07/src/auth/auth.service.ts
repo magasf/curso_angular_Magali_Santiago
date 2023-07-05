@@ -4,8 +4,7 @@ import { UsersService } from 'src/users/users.service';
 import { LoginDTO } from './dto/login.dto';
 import { TokenDTO } from './dto/token.dto';
 import { User } from 'src/users/users.model';
-
-
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -23,10 +22,10 @@ export class AuthService {
         if(!user) 
             throw new UnauthorizedException('Credenciales incorrectas'); // 401
 
-        if(user.password !== login.password) 
+        // comprobar contraseña cifrada:
+        if(! bcrypt.compareSync(login.password, user.password)) 
             throw new UnauthorizedException('Credenciales incorrectas'); // 401
 
-        
         let payload = {
             email: user.email,
             sub: user.id,
@@ -39,17 +38,19 @@ export class AuthService {
 
         return token;
 
-        
     }
-    async register(user: User){
-        await this.userService.create(user)
 
-        let loginDTO = {
+    async register(user: User): Promise<TokenDTO> {
+
+        let loginDTO: LoginDTO = {
             email: user.email,
-            password: user.password
+            password: user.password // contraseña original
         }
-        
-        return this.login(loginDTO)
 
+        // cifrar contraseña bcrypt
+        user.password = bcrypt.hashSync(user.password, 10); // contraseña cifrada
+        await this.userService.create(user);
+
+        return await this.login(loginDTO);
     }
 }

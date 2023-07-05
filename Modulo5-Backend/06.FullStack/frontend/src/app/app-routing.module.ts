@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./books/books.module').then(m => m.BooksModule) // lazy loading
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) // lazy loading
+  },
+  {
     path: '', redirectTo: 'books', pathMatch: 'full'
   },
   {

@@ -8,20 +8,23 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   userForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService){}
-  save(){
-    
-    let login ={
+  constructor(private authService: AuthService) {}
+
+  save() {
+
+    let login = {
       email: this.userForm.get('email')?.value ?? '',
       password: this.userForm.get('password')?.value ?? ''
-
     }
-    this.authService.login(login).subscribe(data => console.log(data))
+
+    this.authService.login(login).subscribe(data => console.log(data));
+
   }
 
 }
