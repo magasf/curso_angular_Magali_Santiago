@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private router: Router) {}
 
   save() {
 
@@ -23,7 +25,12 @@ export class LoginComponent {
       password: this.userForm.get('password')?.value ?? ''
     }
 
-    this.authService.login(login).subscribe(data => console.log(data));
+    this.authService.login(login).subscribe(data => {
+      console.log(data.token);
+      //Guardar el token para utilizarlo en las posteriores peticiones
+      localStorage.setItem("jwt_token", data.token)
+      this.router.navigate(['/books'])
+    });
 
   }
 

@@ -11,8 +11,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             // extrae el token de la header Authorization y verifica si es correcto
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            //secretOrKey: process.env.NEST_JWT_SECRET
-            secretOrKey: "holaMundo"
+            secretOrKey: process.env.NEST_JWT_SECRET
+           // secretOrKey: "holaMundo"
         })
     }
 

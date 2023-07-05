@@ -14,8 +14,8 @@ import { Location } from "src/locations/locations.model";
             host: 'localhost',
             port: 3306,
             username: 'root',
-            password: 'Admin', // sustituir por variable de entorno
-            // password: process.env.NEST_PASSWORD,
+            //password: 'Admin', // sustituir por variable de entorno
+            password: process.env.NEST_PASSWORD,
             database: 'backend_nest',
             entities: [
                 // __dirname + 'src/**/*.model.ts'
