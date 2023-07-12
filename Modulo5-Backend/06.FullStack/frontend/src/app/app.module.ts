@@ -15,6 +15,7 @@ import { BooksModule } from './books/books.module';
 import { AuthorsModule } from './authors/authors.module';
 import { CategoriesModule } from './categories/categories.module';
 import { AuthModule } from './auth/auth.module';
+import { BookingsModule } from './bookings/bookings.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthModule } from './auth/auth.module';
     BooksModule,
     AuthorsModule,
     CategoriesModule,
-    AuthModule
+    AuthModule,
+    BookingsModule
 
   ],
   providers: [],

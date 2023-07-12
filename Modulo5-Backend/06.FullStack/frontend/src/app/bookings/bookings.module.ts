@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsersRoutingModule } from './users-routing.module';
-import { ProfileComponent } from './profile/profile.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { BookingsRoutingModule } from './bookings-routing.module';
+import { BookingListComponent } from './booking-list/booking-list.component';
+import { BookingFormComponent } from './booking-form/booking-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
@@ -14,16 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-
-
 @NgModule({
   declarations: [
-    ProfileComponent,
-    UserListComponent
+    BookingListComponent,
+    BookingFormComponent
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule,
+    BookingsRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -33,9 +32,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatTableModule,
     MatIconModule
+
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
 })
-export class UsersModule { }
+export class BookingsModule { }

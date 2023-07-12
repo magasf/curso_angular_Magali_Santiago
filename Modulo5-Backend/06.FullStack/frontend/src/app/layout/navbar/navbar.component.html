@@ -10,19 +10,31 @@
 
     <button mat-button [matMenuTriggerFor]="menuBooks">Libros</button>
     <mat-menu #menuBooks="matMenu">
-      <button mat-menu-item>Tabla libros</button>
-      <button mat-menu-item>Galería libros</button>
+      <button mat-menu-item routerLink="/books">Listado libros</button>
+      <button mat-menu-item routerLink="/books/new" *ngIf="authService.isAdmin()">Crear nuevo libro</button>
+      
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="menuAuthors">Autores</button>
     <mat-menu #menuAuthors="matMenu">
-      <button mat-menu-item>Tabla autores</button>
-      <button mat-menu-item>Galería autores</button>
+      <button mat-menu-item>Listado autores</button>
+      <button mat-menu-item routerLink="/authors/new" *ngIf="authService.isAdmin()">Crear nuevo autor</button>
+      
     </mat-menu>
+    
+    <button mat-button *ngIf="!authService.isLoggedIn()" routerLink="/auth/login">
+      <mat-icon>login</mat-icon>
+      Iniciar sesión
+    </button>
 
-    <button mat-button routerLink="/auth/login">Iniciar sesión</button>
-    <button mat-button routerLink="/auth/register">Crear cuenta</button>
-    <button mat-button (click)="authService.logout()">Cerrar Sesion</button>
+    
+      <button mat-button *ngIf="authService.isAdmin()" routerLink="/auth/register">
+        
+        Eres Administrador
+  
+      </button>
+      <button mat-button *ngIf="!authService.isLoggedIn()" routerLink="/auth/register">Crear cuenta</button>
+    <button mat-button *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Cerrar Sesion</button>
 
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>

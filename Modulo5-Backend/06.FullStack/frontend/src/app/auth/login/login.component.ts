@@ -15,8 +15,10 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService,
-              private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {}
 
   save() {
 
@@ -27,9 +29,9 @@ export class LoginComponent {
 
     this.authService.login(login).subscribe(data => {
       console.log(data.token);
-      //Guardar el token para utilizarlo en las posteriores peticiones
-      localStorage.setItem("jwt_token", data.token)
-      this.router.navigate(['/books'])
+      // Guardar el token para utilizarlo en las posteriores peticiones
+      localStorage.setItem('jwt_token', data.token);
+      this.router.navigate(['/books']);
     });
 
   }

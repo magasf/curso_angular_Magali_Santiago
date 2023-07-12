@@ -12,7 +12,6 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: process.env.NEST_JWT_SECRET,
-      //secret: "holaMundo",
       signOptions: { expiresIn: '7d'}
     })
   ],

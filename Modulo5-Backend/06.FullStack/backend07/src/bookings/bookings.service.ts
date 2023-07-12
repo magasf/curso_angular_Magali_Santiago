@@ -20,6 +20,10 @@ export class BookingsService {
         }
     }
 
+    findAll(): Promise<Booking[]> {
+        return this.bookingRepo.find();
+    }
+
     findAllByUserId(userId: number): Promise<Booking[]> {
         return this.bookingRepo.find({
             relations: {
