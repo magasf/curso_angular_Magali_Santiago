@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from 'src/app/categories/services/category.service';
 import { ICategory } from 'src/app/categories/models/category.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -27,16 +28,27 @@ export class BookListComponent implements OnInit {
   categories: ICategory[] = [];
   author: IAuthor | undefined;
   category: ICategory | undefined;
+  isLoggedIn = false;
+  isAdmin = false;
+
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadBooks();
+    this.authService.isLoggedIn.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
+
+    this.authService.isAdmin.subscribe(admin => {
+      this.isAdmin = admin;
+    });
   }
 
   loadBooks() {

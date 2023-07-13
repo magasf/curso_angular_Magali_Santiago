@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -35,6 +35,27 @@ export class UsersService {
             console.log(error.message);
             throw new ConflictException('Cant save');
         }
+    }
+
+    async update(user: User): Promise<User> {
+        let userFromDB = await this.userRepo.findOne({ 
+            where: {
+                id: user.id
+            }
+         });
+
+         if(!userFromDB) throw new NotFoundException('User no encontrado');
+
+         try {
+            console.log(user);
+            userFromDB.username = user.username;
+            userFromDB.email = user.email;
+            return await this.userRepo.save(userFromDB);
+
+         } catch (error) {
+            console.log(error);
+            throw new ConflictException('Error actualizando user');
+         }
     }
 
 }
