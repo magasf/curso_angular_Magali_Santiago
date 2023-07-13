@@ -14,12 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { AvatarComponent } from './avatar/avatar.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    UserListComponent
+    UserListComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
