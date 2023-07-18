@@ -14,4 +14,5 @@ export interface IBook {
   photo: string;
   author: IAuthor;
   categories: ICategory[];
+  images?: string[];
 }

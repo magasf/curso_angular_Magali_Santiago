@@ -154,7 +154,7 @@ export class BooksService {
             bookFromDB.title = book.title;
             bookFromDB.author = book.author;
             bookFromDB.editorial = book.editorial;
-
+            bookFromDB.images = book.images;
             
             // Opción 1: buscar las categorías
             // let categoryIds = book.categories.map(cat => cat.id);

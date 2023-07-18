@@ -55,4 +55,7 @@ export class Book {
         inverseJoinColumn: {name: 'id_category'}
     })
     categories: Category[];
+
+    @Column("simple-array")
+    images: string[];
 }

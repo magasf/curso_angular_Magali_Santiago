@@ -31,14 +31,16 @@ export class UsersController {
         // TODO: en caso de actualizar datos que están en el token JWT será necesario
         // crear un nuevo token JWT y devolverlo para que se actualice en frontend
     }
-    //Avatar (se puede separar a un nuevo controlador FilesController o AvatarController)
+
+    // avatar (se puede separar a un nuevo controlador FilesController o AvatarController)
+    @UseGuards(AuthGuard('jwt'))
     @Post('avatar')
     @UseInterceptors(FileInterceptor('file'))
-    uploadAvatar(@UploadedFile() file: Express.Multer.File){
-        console.log(file)
-
-        //guardar nombre archivo usando userService
-        //http://loalhost:3000/uploads/nombrearchivo.jpg
+    async uploadAvatar(@Request() request, @UploadedFile() file: Express.Multer.File) {
+        console.log(file);
+        request.user.avatarImage = file.filename;
+        console.log(request.user);
+        return await this.userService.updateAvatar(request.user);
     }
 
     

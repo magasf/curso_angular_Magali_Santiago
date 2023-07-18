@@ -1,0 +1,21 @@
+<div *ngIf="book && book.images">
+    <h2>Imágenes actuales</h2>
+    <div *ngFor="let image of book.images">
+      <img [src]="'http://localhost:3000/uploads/' + image"
+        style="max-width: 200px;"
+        alt="book image"/>
+    </div>
+  </div>
+  
+  <div *ngIf="imagePreviews && imagePreviews.length > 0">
+    <h2>Nuevas imágenes</h2>
+    <div *ngFor="let imagePreview of imagePreviews">
+      <img [src]="imagePreview" style="max-width: 200px;" alt="book preview"/>
+    </div>
+  </div>
+  
+  <input type="file" (change)="onFileSelected($event)" multiple/>
+  <div>
+    <button (click)="save()">Enviar</button>
+  </div>
+  

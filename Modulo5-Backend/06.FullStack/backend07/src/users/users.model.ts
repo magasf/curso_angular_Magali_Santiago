@@ -24,6 +24,7 @@ export class User {
     })
     role: UserRole;
 
-
+    @Column({nullable: true})
+    avatarImage?: string; // nombre de la imagen en la carpeta uploads
 
 }

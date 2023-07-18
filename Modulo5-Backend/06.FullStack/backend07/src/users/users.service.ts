@@ -58,4 +58,21 @@ export class UsersService {
          }
     }
 
+    async updateAvatar(user: User): Promise<User> {
+        let userFromDB = await this.userRepo.findOne({ 
+            where: {
+                id: user.id
+            }
+         });
+         if(!userFromDB) throw new NotFoundException('User no encontrado');
+
+         try {
+            userFromDB.avatarImage = user.avatarImage;
+            return await this.userRepo.save(userFromDB);
+         } catch (error) {
+            console.log(error);
+            throw new ConflictException('Error actualizando user');
+         }
+    }
+
 }

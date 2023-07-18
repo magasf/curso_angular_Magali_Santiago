@@ -4,6 +4,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookGalleryComponent } from './book-gallery/book-gallery.component';
 import { BookFormComponent } from './book-form/book-form.component';
+import { BookFormImagesComponent } from './book-form-images/book-form-images.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: ':id/edit',
     component: BookFormComponent
+  },
+  {
+    path: ':id/images',
+    component: BookFormImagesComponent
   },
   {
     path: 'author/:authorId',

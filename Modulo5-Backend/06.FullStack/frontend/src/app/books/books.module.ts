@@ -22,12 +22,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule }from '@angular/material/expansion';
+import { BookFormImagesComponent } from './book-form-images/book-form-images.component';
 @NgModule({
     declarations: [
         BookListComponent,
         BookGalleryComponent,
         BookDetailComponent,
-        BookFormComponent
+        BookFormComponent,
+        BookFormImagesComponent
     ],
     imports: [
         CommonModule, BooksRoutingModule, HttpClientModule,
