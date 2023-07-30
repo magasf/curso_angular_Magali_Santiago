@@ -23,6 +23,7 @@ export class AuthService {
   // BehaviorSubject emite valores a suscriptores, es un Observable especializado
   // que siempre emite el último valor a sus observadores
   isAdmin = new BehaviorSubject<boolean>(this.hasAdminToken());
+  isOwner = new BehaviorSubject<boolean>(this.hasOwnerToken());
   isLoggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(
@@ -44,6 +45,7 @@ export class AuthService {
     // Cuando el usuario cierra la sesión,
     // emitimos false para isAdmin y isLoggedIn
     this.isAdmin.next(false);
+    this.isOwner.next(false);
     this.isLoggedIn.next(false);
   }
 
@@ -54,6 +56,15 @@ export class AuthService {
     let decoded_token: Token = jwt_decode(token);
     return decoded_token.role === 'admin';
   }
+
+  hasOwnerToken(): boolean {
+    let token = localStorage.getItem(TOKEN);
+    if (!token) return false;
+
+    let decoded_token: Token = jwt_decode(token);
+    return decoded_token.role === 'owner';
+  }
+
   hasToken() : boolean {
     console.log('checking hasToken()')
     return localStorage.getItem(TOKEN) !== null;
@@ -64,6 +75,7 @@ export class AuthService {
     localStorage.setItem(TOKEN, token);
     let decoded_token: Token = jwt_decode(token);
     this.isAdmin.next(decoded_token.role === 'admin');
+    this.isOwner.next(decoded_token.role === 'owner');
     this.isLoggedIn.next(true);
   }
 

@@ -5,6 +5,8 @@ import { LoginDTO } from './dto/login.dto';
 import { TokenDTO } from './dto/token.dto';
 import { User } from 'src/users/users.model';
 import * as bcrypt from 'bcrypt';
+import { RegisterDTO } from './dto/register.dto';
+import { UserRole } from 'src/users/user-role.enum';
 
 @Injectable()
 export class AuthService {
@@ -40,15 +42,25 @@ export class AuthService {
 
     }
 
-    async register(user: User): Promise<TokenDTO> {
+    async register(register: RegisterDTO): Promise<TokenDTO> {
 
         let loginDTO: LoginDTO = {
-            email: user.email,
-            password: user.password // contraseña original
+            email: register.email,
+            password: register.password // contraseña original
         }
 
-        // cifrar contraseña bcrypt
-        user.password = bcrypt.hashSync(user.password, 10); // contraseña cifrada
+        //Crear Usuario
+        let user = new User();
+        user.username = register.username;
+        user.email = register.email;
+        user.password = bcrypt.hashSync(register.password, 10)//contrasena cifrada
+        
+        user.role = register.isOwner? UserRole.OWNER : UserRole.USER;//asignar role en funcion de isOwner
+
+    
+        //Comprobar role
+
+
         await this.userService.create(user);
 
         return await this.login(loginDTO);

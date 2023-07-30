@@ -8,13 +8,10 @@
     </a>
     <span class="example-spacer"></span>
 
-    <button mat-button [matMenuTriggerFor]="menuBookings" *ngIf="isLoggedIn">
+    <button mat-button *ngIf="isLoggedIn" routerLink="/bookings">
       <mat-icon>shopping_cart</mat-icon>
       Reservas
     </button>
-    <mat-menu #menuBookings="matMenu">
-      <button mat-menu-item routerLink="/bookings">Reservas</button>
-    </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="menuBooks">
       <mat-icon>menu_book</mat-icon>
@@ -34,6 +31,10 @@
       <button mat-menu-item routerLink="/authors/new" *ngIf="isAdmin">Crear nuevo autor</button>
     </mat-menu>
 
+    <button mat-button *ngIf="isOwner" routerLink="/account/book">
+      <mat-icon>library_add</mat-icon>
+      Mi libro
+    </button>
 
     <button mat-button *ngIf="!isLoggedIn" routerLink="/auth/login">
       <mat-icon>login</mat-icon>
