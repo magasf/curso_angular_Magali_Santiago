@@ -5,30 +5,31 @@ import { Movie } from './movies.entity'
 
 @Controller('movies')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  constructor(private movieService: MovieService) {}
 
   @Get()
   getAllMovies(): Promise<Movie[]> {
     return this.movieService.getAllMovies();
   }
 
-//   @Get(':id')
-//   getMovieById(@Param('id') id: number): Promise<Movie> {
-//     return this.movieService.getMovieById(id);
-//   }
+  @Get(':id')
+  getMovieById(@Param('id') id: number): Promise<Movie> {
+     return this.movieService.getMovieById(id);
+  }
 
   @Post()
   createMovie(@Body() movieData: Partial<Movie>): Promise<Movie> {
     return this.movieService.createMovie(movieData);
   }
 
-//   @Put(':id')
-//   updateMovie(@Param('id') id: number, @Body() movieData: Partial<Movie>): Promise<Movie> {
-//     return this.movieService.updateMovie(id, movieData);
-//   }
+  @Put(':id')
+   updateMovie(@Param('id') id: number, @Body() movieData: Partial<Movie>): Promise<Movie> {
+    return this.movieService.updateMovie(id, movieData);
+  }
 
   @Delete(':id')
   deleteMovie(@Param('id') id: number): Promise<void> {
     return this.movieService.deleteMovie(id);
+    
   }
 }

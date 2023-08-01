@@ -3,32 +3,38 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './movies.entity';
 import { MovieRepository } from './movie.repository';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class MovieService {
   constructor(
-    @InjectRepository(MovieRepository)
-    private readonly movieRepository: MovieRepository,
+    @InjectRepository(Movie) private movieRepo: Repository<Movie>,
   ) {}
 
   async getAllMovies(): Promise<Movie[]> {
-    return this.movieRepository.find();
+    return this.movieRepo.find();
   }
 
-//   async getMovieById(id: number): Promise<Movie> {
-//     return this.movieRepository.findOne(id);
-//   }
+  async getMovieById(id: number): Promise<Movie> {
+    return this.movieRepo.findOne({ 
+      
+      where: {
+          id: id
+      },
+   });
+   }
+   
 
   async createMovie(movieData: Partial<Movie>): Promise<Movie> {
-    return this.movieRepository.save(movieData);
+    return this.movieRepo.save(movieData);
   }
 
-//   async updateMovie(id: number, movieData: Partial<Movie>): Promise<Movie> {
-//     await this.movieRepository.update(id, movieData);
-//     return this.getMovieById(id);
-//   }
+   async updateMovie(id: number, movieData: Partial<Movie>): Promise<Movie> {
+     await this.movieRepo.update(id, movieData);
+     return this.getMovieById(id);
+  }
 
   async deleteMovie(id: number): Promise<void> {
-    await this.movieRepository.delete(id);
+    await this.movieRepo.delete(id);
   }
 }

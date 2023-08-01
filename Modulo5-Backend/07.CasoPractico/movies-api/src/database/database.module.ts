@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Movie } from 'src/movies/movies.entity';
 
 @Module({
     imports: [
@@ -12,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             password: process.env.NEST_PASSWORD,
             database: 'backend_movieapi',
             entities: [
-             
+             Movie
                 
             ],
             synchronize: true, 
