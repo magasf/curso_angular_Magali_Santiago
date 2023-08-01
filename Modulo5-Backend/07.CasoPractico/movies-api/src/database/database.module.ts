@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             username: 'root',
             
             password: process.env.NEST_PASSWORD,
-            database: 'movie_api',
+            database: 'backend_movieapi',
             entities: [
              
                 
