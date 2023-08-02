@@ -1,19 +1,22 @@
 
 <div class="ToDoListBox">
   <h2>Lista TODO</h2>
-  <div class="ToDoList">
-    <div *ngFor="let task of tasks" class="ToDoList">
-      <h4>ID</h4>
-      <label>{{task.id}}</label>
-      <h4>Titulo</h4>
-      <label>{{task.title}}</label>
-      <h4>Descripción</h4>
-      <label>{{task.description}}</label>
-      <h4>Horas</h4>
-      <label>{{task.hours}}</label>
+  <div class="ToDoList" >
+    <div *ngFor="let task of tasks" class="tasklist" [routerLink]="[task.id]">
+      <div class="taskBox">
+
+        <h4>ID</h4>
+        <label>{{task.id}}</label>
+        <h4>Titulo</h4>
+        <label>{{task.title}}</label>
+        <h4>Descripción</h4>
+        <label>{{task.description}}</label>
+        <h4>Horas</h4>
+        <label>{{task.hours}}</label>
+      </div>
       
     </div>
 
   </div>
 </div>
-<button routerLink="/newTask">crear tarea</button>
+<button [routerLink]="['newTask'] ">crear tarea</button>

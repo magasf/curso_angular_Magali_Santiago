@@ -29,20 +29,28 @@ export class TaskDetailComponent implements OnInit {
   loadTasks(): void {
     this.tasks = this.taskService.getTasks();
     console.log(this.tasks)
+    this.getTask()
   }
   getTask(): void {
     
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id')); 
+    console.log(id)
     const task = this.taskService.getTask(id); 
+    
     if (task) {
       this.task = task; 
+      console.log("soy un getTask de taskdetail" + task)
     } else {
       this.router.navigate(['/tasks']); 
     }
   }
-  editTask(id: number): void {
+  editTask(): void {
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'))
+    console.log('Vengo de editTask ' + id)
     
-    this.router.navigate(['/edit', id]); 
+    
+    
+    
   }
   createTask(): void {
     
