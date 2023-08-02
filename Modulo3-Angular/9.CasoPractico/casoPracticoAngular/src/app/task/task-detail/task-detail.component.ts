@@ -48,7 +48,7 @@ export class TaskDetailComponent implements OnInit {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'))
     console.log('Vengo de editTask ' + id)
     
-    
+    this.router.navigate(['/tasks/edit', id]);
     
     
   }
