@@ -38,6 +38,6 @@ export class EventService {
     deleteById(id: number): void{
       this.httpClient.delete(`${this.url}/${id}`);
     }
-    //deleteById
+    
   
 }

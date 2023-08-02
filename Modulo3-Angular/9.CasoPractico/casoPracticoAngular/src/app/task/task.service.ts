@@ -1,64 +1,55 @@
 import { Injectable } from '@angular/core';
 import { ITask } from './models/task.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  tasks: ITask[] = [];
+  private tasks: ITask[] = [];
   private storageKey = 'tasks';
 
   constructor() {
-
-  }
-  private getTasksFromLocalStorage(): ITask[] {
-    const tasksString = localStorage.getItem(this.storageKey);
-    return tasksString ? JSON.parse(tasksString) : [];
+    this.loadTasksFromLocalStorage();
   }
 
-  private saveTasksToLocalStorage(tasks: ITask[]): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(tasks));
+  private saveTasksToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  findAllTask(): ITask[] {
-    return this.getTasksFromLocalStorage();
+  private loadTasksFromLocalStorage() {
+    const tasksFromLocalStorage = localStorage.getItem('tasks');
+    this.tasks = tasksFromLocalStorage ? JSON.parse(tasksFromLocalStorage) : [];
   }
 
-  getTaskById(id: number): ITask | undefined {
-    return this.findAllTask().find((task) => task.id === id);
+  getTasks(): ITask[] {
+    return this.tasks;
   }
 
-
+  getTask(id: number): ITask | undefined {
+    return this.tasks.find(task => task.id === id);
+  }
 
   createTask(task: ITask): void {
-    const tasks = this.getTasksFromLocalStorage();
-    task.id = this.generateNextId(tasks);
-    tasks.push(task);
-    this.saveTasksToLocalStorage(tasks);
-    console.log(task)
-  }
-
-  private generateNextId(tasks: ITask[]): number {
-    return tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1;
+    task.id = this.tasks.length > 0 ? Math.max(...this.tasks.map(t => t.id)) + 1 : 1;
+    this.tasks.push(task);
+    this.saveTasksToLocalStorage();
   }
 
   updateTask(task: ITask): void {
-    const tasks = this.getTasksFromLocalStorage();
-    const index = tasks.findIndex((t) => t.id === task.id);
+    const index = this.tasks.findIndex(t => t.id === task.id);
     if (index !== -1) {
-      tasks[index] = task;
-      this.saveTasksToLocalStorage(tasks);
-      console.log(task)
+      this.tasks[index] = task;
+      this.saveTasksToLocalStorage();
     }
   }
-  deleteTask(id: number): void {
-    const tasks = this.getTasksFromLocalStorage().filter((task) => task.id !== id);
-    this.saveTasksToLocalStorage(tasks);
-  }
 
-  deleteAllTask() {
-   return this.tasks = []
+  deleteTask(id: number): void {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+    this.saveTasksToLocalStorage();
   }
+  
 
 }

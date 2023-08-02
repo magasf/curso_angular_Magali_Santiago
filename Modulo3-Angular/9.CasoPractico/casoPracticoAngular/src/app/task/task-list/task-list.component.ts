@@ -9,33 +9,23 @@ import { TaskService } from '../task.service';
 })
 export class TaskListComponent implements OnInit {
 
-  displayedColumns: string[] = 
-  [
-    'title', 
-    'date', 
-    'description', 
-    'hours', 
-    'actions'
-  ];
-  
-
   tasks: ITask[] = [];
 
-  constructor(
-    private taskService: TaskService
-  ){}
+  displayedColumns: string[] = ['title', 'description', 'hours', 'actions'];
+
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.tasks = this.taskService.findAllTask();
+    this.loadTasks();
   }
 
-  delete(task: ITask){
-    console.log(task);
-    this.taskService.deleteTask(task.id)
+  loadTasks(): void {
+    this.tasks = this.taskService.getTasks();
+    console.log(this.tasks)
   }
 
-  deleteAll(){
-    this.taskService.deleteAllTask()
+  deleteTask(id: number): void {
+    this.taskService.deleteTask(id);
+    this.loadTasks();
   }
-  
 }

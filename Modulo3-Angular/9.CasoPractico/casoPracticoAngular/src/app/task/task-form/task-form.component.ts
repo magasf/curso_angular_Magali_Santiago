@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { ITask } from 'src/app/task/models/task.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,59 +11,49 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TaskFormComponent implements OnInit {
   
- task: ITask = { id: 0, title: '', description: '', hours: 0 };
-  taskForm = new FormGroup({
-    id: new FormControl<number>(0),
-    title: new FormControl<string>('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-    description: new FormControl<string>('', [Validators.maxLength(500)]),
-    hours: new FormControl<number>(0)
-    
-  });
+  taskForm!: FormGroup;
+  task!: ITask; ;
 
   constructor(
+    private formBuilder: FormBuilder,
     private taskService: TaskService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ){}
 
   ngOnInit(): void {
-    const taskId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    if (taskId) {
-      this.task = this.taskService.getTaskById(taskId) || this.task;
-    }
+    this.initForm();
+    this.loadTask();
+    
   }
-  loadForm(task: ITask): void {
 
-    this.taskForm.reset({
-      id: task.id,
-      title: task.title,
-      description: task.description,
-      hours: task.hours
+  initForm(): void {
+    this.taskForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      hours: ['', [Validators.required, Validators.min(1)]]
     });
   }
 
-  onSubmit(): void {
-    let id = this.taskForm.get('id')?.value ?? 0;
-    let title = this.taskForm.get('title')?.value ?? '';
-    let description = this.taskForm.get('description')?.value ?? '';
-    let hours = this.taskForm.get('hours')?.value ?? 30;
-
-    let task: ITask = {
-      id: id,
-      title: title,
-      description: description,
-      hours: hours
-    }
-
-
-    if (this.task.id === 0) {
-      // Crear nueva tarea
-      this.taskService.createTask(task);
+  loadTask(): void {
+    const taskId = this.activatedRoute.snapshot.paramMap.get('id'); 
+    if (taskId) {
+      this.task = this.taskService.getTask(+taskId) || { id: 0, title: '', description: '', hours: 0 };
+      this.taskForm.patchValue(this.task);
     } else {
-      // Actualizar tarea existente
-      this.taskService.updateTask(task);
+      this.task = { id: 0, title: '', description: '', hours: 0 };
     }
-    this.router.navigate(['/tasks']);
   }
-  
+
+  onSubmit(): void {
+    if (this.taskForm.valid) {
+      const taskData = this.taskForm.value;
+      if (this.task.id) {
+        this.taskService.updateTask({ ...this.task, ...taskData });
+      } else {
+        this.taskService.createTask({ ...this.task, ...taskData });
+      }
+      this.router.navigate(['/task/:id']);
+    }
+  }
 }
